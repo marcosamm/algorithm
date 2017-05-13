@@ -7,32 +7,32 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class LinkedList<T> {
+public class LinkedList<T extends Comparable<T>, E> {
 	
 	@Getter
 	@Setter
-	class Element {
-		private Element prev;
-		private T value;
-		private Element next;
+	class Link {
+		private Link prev;
+		private Element<T, E> element;
+		private Link next;
 		
-		public Element(T value){
-			this.value = value;
+		public Link(Element<T, E> element){
+			this.element = element;
 			this.prev = this;
 			this.next = this;
 		}
 		
 		@Override
 		public String toString() {
-			return prev.getValue() + " <- " + value + " -> " + next.getValue();
+			return prev.getElement().getKey() + " <- " + element.getKey() + " -> " + next.getElement().getKey();
 		}
 	}
 	
-	protected Element sentinel;
+	protected Link sentinel;
 	protected int size;
 	
 	public LinkedList(){
-		this.sentinel = new Element(null);
+		this.sentinel = new Link(null);
 		size = 0;
 	}
 	
@@ -44,9 +44,9 @@ public class LinkedList<T> {
 		return isEmpty;
 	}
 	
-	public Element search(T value){
-		Element e = sentinel.getNext();
-		while(e != sentinel && !value.equals(e.getValue())){
+	public Link search(Element<T,E> element){
+		Link e = sentinel.getNext();
+		while(e != sentinel && !element.getKey().equals(e.getElement().getKey())){
 			e = e.getNext();
 		}
 		if(e == sentinel){
@@ -55,50 +55,50 @@ public class LinkedList<T> {
 		return e;
 	}
 	
-	public void insert(T value){
-		if(value == null){
+	public void insert(Element<T,E> element){
+		if(element == null){
 			throw new IllegalArgumentException("value is null");
 		}
-		Element newElement = new Element(value);
-		Element next = sentinel.getNext();
-		newElement.setNext(next);
-		newElement.setPrev(sentinel);
-		sentinel.setNext(newElement);
-		next.setPrev(newElement);
+		Link newLink = new Link(element);
+		Link next = sentinel.getNext();
+		newLink.setNext(next);
+		newLink.setPrev(sentinel);
+		sentinel.setNext(newLink);
+		next.setPrev(newLink);
 		size++;
 	}
 	
-	public void delete(Element element){
-		Element prev = element.getPrev();
-		Element next = element.getNext();
+	public void delete(Link link){
+		Link prev = link.getPrev();
+		Link next = link.getNext();
 		prev.setNext(next);
 		next.setPrev(prev);
 		size--;
 	}
 	
-	public void delete(T value){
-		Element e = search(value);
+	public void delete(Element<T,E> element){
+		Link e = search(element);
 		if(e != null){
 			delete(e);
 		}
 	}
 	
-	public Element getFirst(){
+	public Link getFirst(){
 		return sentinel.next;
 	}
 	
-	public Element getLast(){
+	public Link getLast(){
 		return sentinel.prev;
 	}
 	
-	public T[] toArray(){
+	public T[] getKeyArray(){
 		if(size > 0){
-			Element e = sentinel.getNext();
+			Link e = sentinel.getNext();
 			@SuppressWarnings("unchecked")
-			T[] array = (T[]) Array.newInstance(e.getValue().getClass(), size);
+			T[] array = (T[]) Array.newInstance(e.getElement().getKey().getClass(), size);
 			int i = 0;
 			while(!e.equals(sentinel)){
-				array[i] = e.getValue();
+				array[i] = e.getElement().getKey();
 				e = e.getNext();
 				i++;
 			}
@@ -106,6 +106,25 @@ public class LinkedList<T> {
 		}else{
 			@SuppressWarnings("unchecked")
 			T[] array = (T[]) new Object[0];
+			return array;
+		}
+	}
+	
+	public Element<T,E>[] toArray(){
+		if(size > 0){
+			Link e = sentinel.getNext();
+			@SuppressWarnings("unchecked")
+			Element<T,E>[] array = (Element<T,E>[]) Array.newInstance(e.getElement().getClass(), size);
+			int i = 0;
+			while(!e.equals(sentinel)){
+				array[i] = e.getElement();
+				e = e.getNext();
+				i++;
+			}
+			return array;
+		}else{
+			@SuppressWarnings("unchecked")
+			Element<T,E>[] array = (Element<T,E>[]) new Object[0];
 			return array;
 		}
 	}

@@ -9,46 +9,46 @@ public class LinkedListTest {
 	
 	@Test
 	public void search(){
-		LinkedList<Integer> linkedList = new LinkedList<Integer>();
-		Integer i1 = 1;
-		Integer i2 = 2;
-		Integer i3 = 3;
+		LinkedList<Integer,Integer> LinkedList2 = new LinkedList<>();
+		Element<Integer, Integer> e1 = new Element<>(1, null);
+		Element<Integer, Integer> e2 = new Element<>(2, null);
+		Element<Integer, Integer> e3 = new Element<>(3, null);
 		
-		assertEquals(0, linkedList.getSize());
-		linkedList.insert(i1);
-		assertEquals(1, linkedList.getSize());
-		linkedList.insert(i2);
-		assertEquals(2, linkedList.getSize());
-		linkedList.insert(i3);
-		assertEquals(3, linkedList.getSize());
+		assertEquals(0, LinkedList2.getSize());
+		LinkedList2.insert(e1);
+		assertEquals(1, LinkedList2.getSize());
+		LinkedList2.insert(e2);
+		assertEquals(2, LinkedList2.getSize());
+		LinkedList2.insert(e3);
+		assertEquals(3, LinkedList2.getSize());
 		
-		assertEquals(i1, linkedList.search(i1).getValue());
-		assertEquals(i2, linkedList.search(i2).getValue());
-		assertEquals(i3, linkedList.search(i3).getValue());
+		assertEquals(e1, LinkedList2.search(e1).getElement());
+		assertEquals(e2, LinkedList2.search(e2).getElement());
+		assertEquals(e3, LinkedList2.search(e3).getElement());
 	}
 	
 	@Test
 	public void delete(){
-		LinkedList<Integer> linkedList = new LinkedList<Integer>();
-		Integer i1 = 1;
-		Integer i2 = 2;
-		Integer i3 = 3;
+		LinkedList<Integer,Integer> LinkedList2 = new LinkedList<>();
+		Element<Integer, Integer> e1 = new Element<>(1, null);
+		Element<Integer, Integer> e2 = new Element<>(2, null);
+		Element<Integer, Integer> e3 = new Element<>(3, null);
 		
-		assertEquals(0, linkedList.getSize());
-		linkedList.insert(i1);
-		assertEquals(1, linkedList.getSize());
-		assertEquals(i1, linkedList.search(i1).getValue());
-		linkedList.insert(i2);
-		assertEquals(2, linkedList.getSize());
-		assertEquals(i2, linkedList.search(i2).getValue());
-		linkedList.insert(i3);
-		assertEquals(3, linkedList.getSize());
-		assertEquals(i3, linkedList.search(i3).getValue());
+		assertEquals(0, LinkedList2.getSize());
+		LinkedList2.insert(e1);
+		assertEquals(1, LinkedList2.getSize());
+		assertEquals(e1, LinkedList2.search(e1).getElement());
+		LinkedList2.insert(e2);
+		assertEquals(2, LinkedList2.getSize());
+		assertEquals(e2, LinkedList2.search(e2).getElement());
+		LinkedList2.insert(e3);
+		assertEquals(3, LinkedList2.getSize());
+		assertEquals(e3, LinkedList2.search(e3).getElement());
 		
-		linkedList.delete(i2);
-		assertEquals(2, linkedList.getSize());
-		assertEquals(i1, linkedList.search(i1).getValue());
-		assertNull(linkedList.search(i2));
-		assertEquals(i3, linkedList.search(i3).getValue());
+		LinkedList2.delete(e2);
+		assertEquals(2, LinkedList2.getSize());
+		assertEquals(e1, LinkedList2.search(e1).getElement());
+		assertNull(LinkedList2.search(e2));
+		assertEquals(e3, LinkedList2.search(e3).getElement());
 	}
 }

@@ -5,27 +5,27 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SortedList<T extends Comparable<T>> extends LinkedList<T>{
-	public void insert(T value){
-		if(value == null){
-			throw new IllegalArgumentException("value is null");
+public class SortedList<T extends Comparable<T>, E> extends LinkedList<T, E>{
+	public void insert(Element<T,E> element){
+		if(element == null){
+			throw new IllegalArgumentException("element is null");
 		}
-		Element next = sentinel.getNext();
-		while(!next.equals(sentinel) && value.compareTo(next.getValue()) > 0){
+		Link next = sentinel.getNext();
+		while(!next.equals(sentinel) && element.compareTo(next.getElement()) > 0){
 			next = next.getNext();
 		}
-		Element prev = next.getPrev();
-		Element newElement = new Element(value);
-		newElement.setNext(next);
-		newElement.setPrev(prev);
-		prev.setNext(newElement);
-		next.setPrev(newElement);
+		Link prev = next.getPrev();
+		Link newLink = new Link(element);
+		newLink.setNext(next);
+		newLink.setPrev(prev);
+		prev.setNext(newLink);
+		next.setPrev(newLink);
 		size++;
 	}
 	
 	public void insertAll(T [] values){
 		for(T value : values){
-			insert(value);
+			insert(new Element<T, E>(value, null));
 		}
 	}
 }

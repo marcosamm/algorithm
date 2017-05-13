@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-class Element<T extends Comparable<T>, E> implements Comparable<Element<T, E>>{
+public class Element<T extends Comparable<T>, E> implements Comparable<Element<T, E>>{
 	T key;
 	E value;
 	
