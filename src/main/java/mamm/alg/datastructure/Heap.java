@@ -6,9 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class Heap <T extends Comparable<T>>{
-	public static final int MIN = 0;
-	public static final int MAX = 1;
-	
+	public enum Type{
+		MIN,
+		MAX;
+	}
 	protected T[] a;
 	
 	@Getter
@@ -44,7 +45,7 @@ public class Heap <T extends Comparable<T>>{
 		a[i] = value;
 	}
 	
-	public void heapfy(int tipoHeap, int parent){
+	public void heapfy(Type heapType, int parent){
 		int left = getLeft(parent);
 		int right = getRight(parent);
 		/*
@@ -54,8 +55,8 @@ public class Heap <T extends Comparable<T>>{
 		int largestOrSmaller = 0;
 		if((left <= heapSize) 
 			&& (
-				(tipoHeap == MAX && a[left].compareTo(a[parent]) > 0)
-				|| (tipoHeap == MIN && a[left].compareTo(a[parent]) < 0)
+				(heapType == Type.MAX && a[left].compareTo(a[parent]) > 0)
+				|| (heapType == Type.MIN && a[left].compareTo(a[parent]) < 0)
 			)
 		){
 			largestOrSmaller = left;
@@ -64,8 +65,8 @@ public class Heap <T extends Comparable<T>>{
 		}
 		if((right <= heapSize) 
 			&& (
-				(tipoHeap == MAX && a[right].compareTo(a[largestOrSmaller]) > 0)
-				|| (tipoHeap == MIN && a[right].compareTo(a[largestOrSmaller]) < 0)
+				(heapType == Type.MAX && a[right].compareTo(a[largestOrSmaller]) > 0)
+				|| (heapType == Type.MIN && a[right].compareTo(a[largestOrSmaller]) < 0)
 			)
 		){
 			largestOrSmaller = right;
@@ -74,23 +75,23 @@ public class Heap <T extends Comparable<T>>{
 			T parentValue = a[parent];
 			a[parent] = a[largestOrSmaller];
 			a[largestOrSmaller] = parentValue;
-			heapfy(tipoHeap, largestOrSmaller);
+			heapfy(heapType, largestOrSmaller);
 		}
 	}
 	
-	public void buildHeap(int tipoHeap){
+	public void buildHeap(Type heapType){
 		heapSize = a.length - 1;
 		for(int i= (a.length-1)/2; i >= 0; i--){
-			heapfy(tipoHeap, i);
+			heapfy(heapType, i);
 		}
 	} 
 	
 	public void buildMaxHeap(){
-		buildHeap(MAX);
+		buildHeap(Type.MAX);
 	}
 	
 	public void buildMinHeap(){
-		buildHeap(MIN);
+		buildHeap(Type.MIN);
 	}
 	
 	@Override

@@ -2,19 +2,19 @@ package mamm.alg.datastructure;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
+import mamm.alg.datastructure.HashTable.HashMethod;
 
 import org.testng.annotations.Test;
 
 public class HashTableTest {
+	private final Integer i0 = 0;
+	private final Integer i1 = 1;
+	private final Integer i2 = 2;
+	private final Integer i3 = 3;
 	
 	@Test
-	public void search(){
+	public void searchDivisionMethod(){
 		HashTable<Object> hashTable = new HashTable<>(2);
-		Integer i0 = 0;
-		Integer i1 = 1;
-		Integer i2 = 2;
-		Integer i3 = 3;
-		
 		assertEquals(0, hashTable.getSize());
 		hashTable.put(i0, i0);
 		assertEquals(1, hashTable.getSize());
@@ -32,12 +32,8 @@ public class HashTableTest {
 	}
 	
 	@Test
-	public void delete(){
+	public void deleteDivisionMethod(){
 		HashTable<Object> hashTable = new HashTable<>(2);
-		Integer i0 = 0;
-		Integer i1 = 1;
-		Integer i2 = 2;
-		Integer i3 = 3;
 		
 		assertEquals(0, hashTable.getSize());
 		hashTable.put(i0, i0);
@@ -60,45 +56,149 @@ public class HashTableTest {
 	}
 	
 	@Test
-	public void colision(){
+	public void colisionDivisionMethod(){
 		HashTable<Object> hashTable = new HashTable<>(5);
-		Integer i0 = 0;
-		Integer i1 = 1;
-		Integer i2 = 2;
-		Integer i3 = 3;
-		Integer i4 = 4;
-		Integer i5 = 5;
-		Integer i6 = 6;
-		Integer i1n = -1;
-		Integer i2n = -2;
-		Integer i3n = -3;
-		Integer i4n = -4;
-		Integer i5n = -5;
-		Integer i6n = -6;
 		
-		hashTable.put(i0, i0);
-		hashTable.put(i1, i1);
-		hashTable.put(i2, i2);
-		hashTable.put(i3, i3);
-		hashTable.put(i4, i4);
-		hashTable.put(i5, i5);
-		hashTable.put(i6, i6);
-		hashTable.put(i1n, i1n);
-		hashTable.put(i2n, i2n);
-		hashTable.put(i3n, i3n);
-		hashTable.put(i4n, i4n);
-		hashTable.put(i5n, i5n);
-		hashTable.put(i6n, i6n);
+		for(int i = -20; i <= 20; i++){
+			hashTable.put(i, i);
+		}
 		
 		String esperada = 
-				 "[0] => -5, 5, 0\n"
-				+"[1] => -6, -1, 6, 1\n"
-				+"[2] => -2, 2\n"
-				+"[3] => -3, 3\n"
-				+"[4] => -4, 4\n";
+				 "[0] => 20, 15, 10, 5, 0, -5, -10, -15, -20\n"
+				+"[1] => 16, 11, 6, 1, -1, -6, -11, -16\n"
+				+"[2] => 17, 12, 7, 2, -2, -7, -12, -17\n"
+				+"[3] => 18, 13, 8, 3, -3, -8, -13, -18\n"
+				+"[4] => 19, 14, 9, 4, -4, -9, -14, -19\n";
 		
-		assertEquals(i3n, hashTable.get(i3n));
-		assertEquals(13, hashTable.getSize());
+		assertEquals(3, hashTable.get(3));
+		assertEquals(41, hashTable.getSize());
+		assertEquals(hashTable.toString(), esperada);
+	}
+	
+	@Test
+	public void searchMultiplicationMethod(){
+		HashTable<Object> hashTable = new HashTable<>(2, HashMethod.MULTIPLICATION);
+		assertEquals(0, hashTable.getSize());
+		hashTable.put(i0, i0);
+		assertEquals(1, hashTable.getSize());
+		hashTable.put(i1, i1);
+		assertEquals(2, hashTable.getSize());
+		hashTable.put(i2, i2);
+		assertEquals(3, hashTable.getSize());
+		hashTable.put(i3, i3);
+		assertEquals(4, hashTable.getSize());
+		
+		assertEquals(i0, hashTable.get(i0));
+		assertEquals(i1, hashTable.get(i1));
+		assertEquals(i2, hashTable.get(i2));
+		assertEquals(i3, hashTable.get(i3));
+	}
+	
+	@Test
+	public void deleteMultiplicationMethod(){
+		HashTable<Object> hashTable = new HashTable<>(2, HashMethod.MULTIPLICATION);
+		
+		assertEquals(0, hashTable.getSize());
+		hashTable.put(i0, i0);
+		assertEquals(1, hashTable.getSize());
+		hashTable.put(i1, i1);
+		assertEquals(2, hashTable.getSize());
+		assertEquals(i1, hashTable.get(i1));
+		hashTable.put(i2, i2);
+		assertEquals(3, hashTable.getSize());
+		assertEquals(i2, hashTable.get(i2));
+		hashTable.put(i3, i3);
+		assertEquals(4, hashTable.getSize());
+		assertEquals(i3, hashTable.get(i3));
+		
+		hashTable.remove(i2);
+		assertEquals(3, hashTable.getSize());
+		assertEquals(i1, hashTable.get(i1));
+		assertNull(hashTable.get(i2));
+		assertEquals(i3, hashTable.get(i3));
+	}
+	
+	@Test
+	public void colisionMultiplicationMethod(){
+		HashTable<Object> hashTable = new HashTable<>(5, HashMethod.MULTIPLICATION);
+		
+		for(int i = -20; i <= 20; i++){
+			hashTable.put(i, i);
+		}
+		
+		String esperada = 
+				 "[0] => 18, 13, 10, 5, 0, -5, -10, -13, -18\n"
+				+"[1] => 20, 15, 7, 2, -2, -7, -15, -20\n"
+				+"[2] => 17, 12, 9, 4, -4, -9, -12, -17\n"
+				+"[3] => 19, 14, 11, 6, 1, -1, -6, -11, -14, -19\n"
+				+"[4] => 16, 8, 3, -3, -8, -16\n";
+		
+		assertEquals(3, hashTable.get(3));
+		assertEquals(41, hashTable.getSize());
+		assertEquals(hashTable.toString(), esperada);
+	}
+	
+	@Test
+	public void searchUniversalMethod(){
+		HashTable<Object> hashTable = new HashTable<>(6, 17);
+		assertEquals(0, hashTable.getSize());
+		hashTable.put(i0, i0);
+		assertEquals(1, hashTable.getSize());
+		hashTable.put(i1, i1);
+		assertEquals(2, hashTable.getSize());
+		hashTable.put(i2, i2);
+		assertEquals(3, hashTable.getSize());
+		hashTable.put(i3, i3);
+		assertEquals(4, hashTable.getSize());
+		
+		assertEquals(i0, hashTable.get(i0));
+		assertEquals(i1, hashTable.get(i1));
+		assertEquals(i2, hashTable.get(i2));
+		assertEquals(i3, hashTable.get(i3));
+	}
+	
+	@Test
+	public void deleteUniversalMethod(){
+		HashTable<Object> hashTable = new HashTable<>(6, 17);
+		
+		assertEquals(0, hashTable.getSize());
+		hashTable.put(i0, i0);
+		assertEquals(1, hashTable.getSize());
+		hashTable.put(i1, i1);
+		assertEquals(2, hashTable.getSize());
+		assertEquals(i1, hashTable.get(i1));
+		hashTable.put(i2, i2);
+		assertEquals(3, hashTable.getSize());
+		assertEquals(i2, hashTable.get(i2));
+		hashTable.put(i3, i3);
+		assertEquals(4, hashTable.getSize());
+		assertEquals(i3, hashTable.get(i3));
+		
+		hashTable.remove(i2);
+		assertEquals(3, hashTable.getSize());
+		assertEquals(i1, hashTable.get(i1));
+		assertNull(hashTable.get(i2));
+		assertEquals(i3, hashTable.get(i3));
+	}
+	
+	@Test
+	public void colisionUniversalMethod(){
+		HashTable<Object> hashTable = new HashTable<>(6, 17, 3, 13);
+		
+		for(int i = 0; i <= 20; i++){
+			hashTable.put(i, i);
+		}
+		
+		String esperada = 
+				 "[0] => 11, 9, 7\n"
+				+"[1] => 17, 15, 13, 0\n"
+				+"[2] => 19, 6, 4, 2\n"
+				+"[3] => 12, 10, 8\n"
+				+"[4] => 18, 16, 14, 1\n"
+				+"[5] => 20, 5, 3\n";
+		
+		assertEquals(3, hashTable.get(3));
+		assertEquals(21, hashTable.getSize());
 		assertEquals(hashTable.toString(), esperada);
 	}
 }
