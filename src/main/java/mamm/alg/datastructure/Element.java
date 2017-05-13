@@ -17,5 +17,5 @@ public class Element<T extends Comparable<T>, E> implements Comparable<Element<T
 	@Override
 	public int compareTo(Element<T, E> o) {
 		return this.getKey().compareTo(o.getKey());
-	}	
+	}
 }

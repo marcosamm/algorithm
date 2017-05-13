@@ -128,4 +128,25 @@ public class LinkedList<T extends Comparable<T>, E> {
 			return array;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
+		Link e = sentinel.getNext();
+		while(!e.equals(sentinel)){
+			sb.append(e.getElement().getKey().toString());
+			if(!e.getNext().equals(sentinel)){
+				sb.append(", ");
+			}
+		}
+		sb.append("]");
+		return sb.toString();
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		// TODO Desfazer links
+		super.finalize();
+	}
 }

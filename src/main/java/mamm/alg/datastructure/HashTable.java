@@ -1,33 +1,68 @@
 package mamm.alg.datastructure;
 
+import lombok.Getter;
+import lombok.Setter;
 
 
-public class HashTable <T extends Comparable<T>, E> implements Hash<T, E>{
+
+public class HashTable <E> implements Hash<Integer, E>{
+	@Getter
+	@Setter
 	private int size;
-	private LinkedList<T, E> [] t;
+	private LinkedList<Integer, E> [] t;
+	private int m;
 	
+	@SuppressWarnings("unchecked")
 	public HashTable(int m){
+		this.m = m;
 		this.size = 0;
 		this.t = new LinkedList [m];
+		for(int i=0; i < t.length; i++){
+			t[i] = new LinkedList<Integer, E>();
+		}
 	}
 	
-	public int getHash(T key){
-		return 0;
+	public int getHash(Integer key){
+		return Math.abs(key) % m;
 	}
 	
-	public void put(T key, E value){
+	public void put(Integer key, E value){
 		int iList = getHash(key);
-		t[iList].insert(new Element<T, E>(key, value));
+		t[iList].insert(new Element<Integer, E>(key, value));
 		size++;
 	}
 	
-	public E get(T key){
+	public E get(Integer key){
+		E value = null;
 		int iList = getHash(key);
-		return t[iList].search(new Element<T, E>(key, null)).getElement().getValue();
+		
+		LinkedList<Integer, E>.Link e = t[iList].search(new Element<Integer, E>(key, null));
+		if(e != null){
+			value = e.getElement().getValue();
+		}
+		return value;
 	}
 	
-	public void remove(T key){
+	public void remove(Integer key){
 		int iList = getHash(key);
-		t[iList].delete(new Element<T, E>(key, null));
+		t[iList].delete(new Element<Integer, E>(key, null));
+		size--;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i < t.length; i++) {
+			sb.append("[").append(i).append("] => ");
+			Integer [] a = t[i].getKeyArray();
+			for(int j = 0; j < a.length; j++){
+				sb.append(a[j].intValue());
+				if(j != a.length - 1){
+					sb.append(", ");
+				}
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
 	}
 }
