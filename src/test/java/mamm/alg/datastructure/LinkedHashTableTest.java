@@ -6,7 +6,7 @@ import mamm.alg.datastructure.HashTable.HashMethod;
 
 import org.testng.annotations.Test;
 
-public class HashTableTest {
+public class LinkedHashTableTest {
 	private final Integer i0 = 0;
 	private final Integer i1 = 1;
 	private final Integer i2 = 2;
@@ -14,7 +14,7 @@ public class HashTableTest {
 	
 	@Test
 	public void searchDivisionMethod(){
-		HashTable<Object> hashTable = new HashTable<>(2);
+		LinkedHashTable<Object> hashTable = new LinkedHashTable<>(2);
 		assertEquals(0, hashTable.getSize());
 		hashTable.put(i0, i0);
 		assertEquals(1, hashTable.getSize());
@@ -33,7 +33,7 @@ public class HashTableTest {
 	
 	@Test
 	public void deleteDivisionMethod(){
-		HashTable<Object> hashTable = new HashTable<>(2);
+		LinkedHashTable<Object> hashTable = new LinkedHashTable<>(2);
 		
 		assertEquals(0, hashTable.getSize());
 		hashTable.put(i0, i0);
@@ -57,7 +57,7 @@ public class HashTableTest {
 	
 	@Test
 	public void colisionDivisionMethod(){
-		HashTable<Object> hashTable = new HashTable<>(5);
+		LinkedHashTable<Object> hashTable = new LinkedHashTable<>(5);
 		
 		for(int i = -20; i <= 20; i++){
 			hashTable.put(i, i);
@@ -77,7 +77,7 @@ public class HashTableTest {
 	
 	@Test
 	public void searchMultiplicationMethod(){
-		HashTable<Object> hashTable = new HashTable<>(2, HashMethod.MULTIPLICATION);
+		LinkedHashTable<Object> hashTable = new LinkedHashTable<>(2, HashMethod.MULTIPLICATION);
 		assertEquals(0, hashTable.getSize());
 		hashTable.put(i0, i0);
 		assertEquals(1, hashTable.getSize());
@@ -96,7 +96,7 @@ public class HashTableTest {
 	
 	@Test
 	public void deleteMultiplicationMethod(){
-		HashTable<Object> hashTable = new HashTable<>(2, HashMethod.MULTIPLICATION);
+		LinkedHashTable<Object> hashTable = new LinkedHashTable<>(2, HashMethod.MULTIPLICATION);
 		
 		assertEquals(0, hashTable.getSize());
 		hashTable.put(i0, i0);
@@ -120,7 +120,7 @@ public class HashTableTest {
 	
 	@Test
 	public void colisionMultiplicationMethod(){
-		HashTable<Object> hashTable = new HashTable<>(5, HashMethod.MULTIPLICATION);
+		LinkedHashTable<Object> hashTable = new LinkedHashTable<>(5, HashMethod.MULTIPLICATION);
 		
 		for(int i = -20; i <= 20; i++){
 			hashTable.put(i, i);
@@ -140,7 +140,7 @@ public class HashTableTest {
 	
 	@Test
 	public void searchUniversalMethod(){
-		HashTable<Object> hashTable = new HashTable<>(6, 17);
+		LinkedHashTable<Object> hashTable = new LinkedHashTable<>(6, 17);
 		assertEquals(0, hashTable.getSize());
 		hashTable.put(i0, i0);
 		assertEquals(1, hashTable.getSize());
@@ -159,7 +159,7 @@ public class HashTableTest {
 	
 	@Test
 	public void deleteUniversalMethod(){
-		HashTable<Object> hashTable = new HashTable<>(6, 17);
+		LinkedHashTable<Object> hashTable = new LinkedHashTable<>(6, 17);
 		
 		assertEquals(0, hashTable.getSize());
 		hashTable.put(i0, i0);
@@ -183,7 +183,7 @@ public class HashTableTest {
 	
 	@Test
 	public void colisionUniversalMethod(){
-		HashTable<Object> hashTable = new HashTable<>(6, 17, 3, 13);
+		LinkedHashTable<Object> hashTable = new LinkedHashTable<>(6, 17, 3, 13);
 		
 		for(int i = 0; i <= 20; i++){
 			hashTable.put(i, i);
