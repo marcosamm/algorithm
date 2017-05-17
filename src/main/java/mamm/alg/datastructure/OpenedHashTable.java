@@ -22,7 +22,6 @@ public class OpenedHashTable <E> extends AbstractHashTable<E>{
 	/**
 	 * Division Method + Linear Probing.
 	 * @param m
-	 * @param capacity
 	 */
 	public OpenedHashTable(int m){
 		super(m);
@@ -32,7 +31,6 @@ public class OpenedHashTable <E> extends AbstractHashTable<E>{
 	/**
 	 * Division Method + Quadratic Probing.
 	 * @param m
-	 * @param capacity
 	 * @param c1
 	 * @param c2
 	 */
@@ -46,13 +44,13 @@ public class OpenedHashTable <E> extends AbstractHashTable<E>{
 		initialize(openAddressType, c1, c2);
 	}
 	
-	public OpenedHashTable(int m, OpenAddressType openAddressType, int p){
-		super(m, p);
+	public OpenedHashTable(int m, OpenAddressType openAddressType){
+		super(m, m);
 		this.openAddressType = openAddressType;
 	}
 	
-	public OpenedHashTable(int m, OpenAddressType openAddressType, int p, int a, int b, float c1, float c2){
-		super(m, p, a, b);
+	public OpenedHashTable(int m, OpenAddressType openAddressType, int a, int b, float c1, float c2){
+		super(m, m, a, b);
 		this.openAddressType = openAddressType;
 		this.c1 = c1;
 		this.c2 = c2;

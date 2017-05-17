@@ -6,14 +6,32 @@ import lombok.Setter;
 
 
 public abstract class AbstractHashTable <E> implements HashTable<Integer, E>{
+	/**
+	 * Constant used in the multiplication hash.
+	 */
 	public static final float A = 0.6180339887f;
 	
 	@Getter
 	@Setter
+	/**
+	 * Number of elements.
+	 */
 	protected int size;
+	/**
+	 * Hash length.
+	 */
 	protected int m;
+	/**
+	 * Constant used in the universal hash.
+	 */
 	private Integer a;
+	/**
+	 * Constant used in the universal hash.
+	 */
 	private Integer b;
+	/**
+	 * prime number p large enough so that every possible key k is in the range 0 to p-1, inclusive.
+	 */
 	private Integer p;
 	private HashMethod hashMethod;
 	
