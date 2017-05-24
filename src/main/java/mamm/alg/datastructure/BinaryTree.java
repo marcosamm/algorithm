@@ -4,7 +4,7 @@ package mamm.alg.datastructure;
 public class BinaryTree<T extends Comparable<T>, E> {
 	public static final int NODE_VIEW_LENGHT = 2;
 	
-	enum WalkOrder {
+	public enum WalkOrder {
 		PRE_ORDER,
 		IN_ORDER,
 		POST_ORDER,
@@ -23,7 +23,6 @@ public class BinaryTree<T extends Comparable<T>, E> {
 	
 	public String treeWalk(WalkOrder walkOrder){
 		StringBuilder s = new StringBuilder();
-		s.append("[");
 		switch (walkOrder) {
 			case PRE_ORDER:
 				preOrderTreeWalk(root, s);
@@ -42,7 +41,6 @@ public class BinaryTree<T extends Comparable<T>, E> {
 				inverseOrderTreeWalk(root, s);
 				break;
 		}
-		s.append("]");
 		return s.toString();
 	}
 	

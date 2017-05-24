@@ -3,8 +3,8 @@ package mamm.alg.sort;
 
 public class RadixSort {
 	public static void sort(Integer [] a){
-		if(a == null){
-			throw new IllegalArgumentException("a is null");
+		if(a == null || a.length < 1){
+			throw new IllegalArgumentException("a is null or a.length < 1");
 		}
 		Integer max = SortUtil.getMaxValue(a);
 		int qtdDigitos = getNumberOfDigits(max);
@@ -18,8 +18,8 @@ public class RadixSort {
 	}
 	
 	public static void sort(String [] a){
-		if(a == null){
-			throw new IllegalArgumentException("a is null");
+		if(a == null || a.length < 1){
+			throw new IllegalArgumentException("a is null or a.length < 1");
 		}
 		if(!SortUtil.sameNumberOfDigits(a)){
 			throw new IllegalArgumentException("Different number of digits");
