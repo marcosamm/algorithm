@@ -6,6 +6,16 @@ import org.testng.annotations.Test;
 
 public class InsertionSortTest {
 	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void sortNullArray(){
+		InsertionSort.sort(null);
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void sortEmptyArray(){
+		InsertionSort.sort(new Integer[0]);
+	}
+	
 	@Test
 	public void oneElement(){
 		Integer [] list = {5};

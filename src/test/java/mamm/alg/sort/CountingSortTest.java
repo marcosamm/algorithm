@@ -6,6 +6,21 @@ import org.testng.annotations.Test;
 
 public class CountingSortTest {
 	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void sortNullArray(){
+		CountingSort.sort(null, null, 0);
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void sortByCharacterNullArray(){
+		CountingSort.sortByCharacter(null, 0);
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void sortByDigitNullArray(){
+		CountingSort.sortByDigit(null, 0);
+	}
+	
 	@Test
 	public void oneElement(){
 		Integer [] list = {5};

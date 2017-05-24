@@ -1,10 +1,8 @@
 package mamm.alg.datastructure;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 public class Element<T extends Comparable<T>, E> implements Comparable<Element<T, E>>{
 	T key;
 	E value;

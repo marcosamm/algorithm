@@ -9,6 +9,30 @@ public class MaxSubarrayTest {
 	Integer [] list2 = {10, 5, -17, 20, 50, -1, 3, -30, 10};
 	Integer [] list3 = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
 	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void findMaximumSubarrayRecursiveEmptyArray(){
+		MaxSubarray maxSubarray = new MaxSubarray();
+		maxSubarray.findMaximumSubarrayRecursive(new Integer[0]);
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void findMaximumSubarrayLinearEmptyArray(){
+		MaxSubarray maxSubarray = new MaxSubarray();
+		maxSubarray.findMaximumSubarrayLinear(new Integer[0]);
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void findMaximumSubarrayRecursiveNullArray(){
+		MaxSubarray maxSubarray = new MaxSubarray();
+		maxSubarray.findMaximumSubarrayRecursive(null);
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void findMaximumSubarrayLinearNullArray(){
+		MaxSubarray maxSubarray = new MaxSubarray();
+		maxSubarray.findMaximumSubarrayLinear(null);
+	}
+	
 	@Test
 	public void testRecursive1(){
 		MaxSubarray maxSubarray = new MaxSubarray();

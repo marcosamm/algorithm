@@ -1,6 +1,7 @@
 package mamm.alg.datastructure;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
@@ -8,6 +9,11 @@ import java.nio.BufferUnderflowException;
 import org.testng.annotations.Test;
 
 public class QueueTest {
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void capacityLessThanZero(){
+		new Queue<Integer>(0);
+	}
 	
 	@Test(expectedExceptions = BufferUnderflowException.class)
 	public void underflowException(){
@@ -38,7 +44,7 @@ public class QueueTest {
 		assertEquals(2, queue.size());
 		queue.enqueue(i3);
 		assertEquals(3, queue.size());
-		
+		assertTrue(queue.isFull());
 		assertEquals(i1, queue.dequeue());
 		assertEquals(2, queue.size());
 		assertEquals(i2, queue.dequeue());

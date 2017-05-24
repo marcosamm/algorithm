@@ -4,10 +4,10 @@ import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
 
 public class Queue<T> {
-	private int head;
-	private int tail;
-	private int capacity;
-	private T[] queue;
+	protected int head;
+	protected int tail;
+	protected int capacity;
+	protected T[] queue;
 	
 	
 	@SuppressWarnings("unchecked")

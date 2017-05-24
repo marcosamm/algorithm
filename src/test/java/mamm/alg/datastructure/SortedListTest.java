@@ -9,6 +9,12 @@ import org.testng.annotations.Test;
 
 public class SortedListTest {
 	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void insertNullElement(){
+		SortedList<Integer,Object> linkedList = new SortedList<>();
+		linkedList.insert(null);
+	}
+	
 	@Test
 	public void search(){
 		SortedList<Integer,Object> linkedList = new SortedList<>();

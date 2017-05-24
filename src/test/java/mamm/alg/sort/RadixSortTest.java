@@ -6,6 +6,28 @@ import org.testng.annotations.Test;
 
 public class RadixSortTest {
 	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void sortNullIntegerArray(){
+		Integer [] a = null;
+		RadixSort.sort(a);
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void sortNullStringArray(){
+		String [] a = null;
+		RadixSort.sort(a);
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void sortEmptyIntegerArray(){
+		RadixSort.sort(new Integer[0]);
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void sortEmptyStringArray(){
+		RadixSort.sort(new String[0]);
+	}
+	
 	@Test
 	public void oneElement(){
 		Integer [] list = {5};
@@ -113,5 +135,11 @@ public class RadixSortTest {
 		String [] list = {"COW", "DOG", "SEA", "RUG", "ROW", "MOB", "BOX", "TAB", "BAR", "EAR", "TAR", "DIG", "BIG", "TEA", "NOW", "FOX"};
 		RadixSort.sort(list);
 		assertTrue(SortUtil.isOrdenedAcending(list), "Sorting failure");
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void diferentLenghtElementsArray(){
+		String [] list = {"A", "B", "AB"};
+		RadixSort.sort(list);
 	}
 }

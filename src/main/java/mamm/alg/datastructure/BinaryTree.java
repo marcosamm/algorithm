@@ -1,52 +1,8 @@
 package mamm.alg.datastructure;
 
-import lombok.Getter;
-import lombok.Setter;
 
 public class BinaryTree<T extends Comparable<T>, E> {
 	public static final int NODE_VIEW_LENGHT = 2;
-	
-	@Getter
-	class TreeNode implements Comparable<TreeNode>{
-		@Setter
-		private TreeNode parent;
-		@Setter
-		private TreeNode left;
-		@Setter
-		private TreeNode right;
-		
-		private T key;
-		private E value;
-		
-		TreeNode(T key, E value){
-			this.key = key;
-			this.value = value;
-		}
-
-		@Override
-		public int compareTo(TreeNode o) {
-			return getKey().compareTo(o.getKey());
-		}
-		
-		@Override
-		public boolean equals(Object obj) {
-			boolean equals = false;
-			if(obj != null){
-				@SuppressWarnings("unchecked")
-				TreeNode o = (TreeNode) obj;
-				return getKey().equals(o.getKey());
-			}
-			return equals;
-		}
-		
-		@Override
-		public String toString() {
-			if(key != null){
-				return getKey().toString();
-			}
-			return null;
-		}
-	}
 	
 	enum WalkOrder {
 		PRE_ORDER,
@@ -55,12 +11,14 @@ public class BinaryTree<T extends Comparable<T>, E> {
 		BY_LEVEL_ORDER,
 		INVERSE_ORDER;
 	}
-	@Getter
-	private TreeNode root;
-	@Getter
-	private int size;
+	protected BinaryTreeNode<T,E> root;
+	protected int size;
+	
+	protected BinaryTreeNode<T, E> nil;
 	
 	public BinaryTree() {
+		nil = new BinaryTreeNode <T, E>(null, null);
+		root = nil;
 	}
 	
 	public String treeWalk(WalkOrder walkOrder){
@@ -88,60 +46,60 @@ public class BinaryTree<T extends Comparable<T>, E> {
 		return s.toString();
 	}
 	
-	public void preOrderTreeWalk(TreeNode n, StringBuilder s){
-		if(n != null){
+	public void preOrderTreeWalk(BinaryTreeNode<T,E> n, StringBuilder s){
+		if(n != nil){
 			s.append(n.getKey().toString());
-			if(n.getLeft() != null){
+			if(n.getLeft() != nil){
 				s.append(", ");
 			}
 			preOrderTreeWalk(n.getLeft(), s);
-			if(n.getRight() != null){
+			if(n.getRight() != nil){
 				s.append(", ");
 			}
 			preOrderTreeWalk(n.getRight(), s);
 		}
 	}
 	
-	public void inOrderTreeWalk(TreeNode n, StringBuilder s){
-		if(n != null){
+	public void inOrderTreeWalk(BinaryTreeNode<T,E> n, StringBuilder s){
+		if(n != nil){
 			inOrderTreeWalk(n.getLeft(), s);
-			if(n.getLeft() != null){
+			if(n.getLeft() != nil){
 				s.append(", ");
 			}
 			s.append(n.getKey().toString());
-			if(n.getRight() != null){
+			if(n.getRight() != nil){
 				s.append(", ");
 			}
 			inOrderTreeWalk(n.getRight(), s);
 		}
 	}
 	
-	public void postOrderTreeWalk(TreeNode n, StringBuilder s){
-		if(n != null){
+	public void postOrderTreeWalk(BinaryTreeNode<T,E> n, StringBuilder s){
+		if(n != nil){
 			postOrderTreeWalk(n.getLeft(), s);
-			if(n.getLeft() != null){
+			if(n.getLeft() != nil){
 				s.append(", ");
 			}
 			postOrderTreeWalk(n.getRight(), s);
-			if(n.getRight() != null){
+			if(n.getRight() != nil){
 				s.append(", ");
 			}
 			s.append(n.getKey().toString());
 		}
 	}
 	
-	public void byLevelTreeWalk(TreeNode root, StringBuilder s){
-		Queue<TreeNode> level = new Queue<BinaryTree<T,E>.TreeNode>(size);
-		if(root != null){
+	public void byLevelTreeWalk(BinaryTreeNode<T,E> root, StringBuilder s){
+		Queue<BinaryTreeNode<T,E>> level = new Queue<BinaryTreeNode<T,E>>(size);
+		if(root != nil){
 			level.enqueue(root);
 		}
 		while(!level.isEmpty()){
-			TreeNode node = level.dequeue();
+			BinaryTreeNode<T,E> node = level.dequeue();
 			s.append(node.getKey().toString());
-			if(node.getLeft() != null){
+			if(node.getLeft() != nil){
 				level.enqueue(node.getLeft());
 			}
-			if(node.getRight() != null){
+			if(node.getRight() != nil){
 				level.enqueue(node.getRight());
 			}
 			if(!level.isEmpty()){
@@ -150,52 +108,27 @@ public class BinaryTree<T extends Comparable<T>, E> {
 		}
 	}
 	
-	public void inverseOrderTreeWalk(TreeNode n, StringBuilder s){
-		if(n != null){
+	public void inverseOrderTreeWalk(BinaryTreeNode<T,E> n, StringBuilder s){
+		if(n != nil){
 			inverseOrderTreeWalk(n.getRight(), s);
-			if(n.getRight() != null){
+			if(n.getRight() != nil){
 				s.append(", ");
 			}
 			s.append(n.getKey().toString());
-			if(n.getLeft() != null){
+			if(n.getLeft() != nil){
 				s.append(", ");
 			}
 			inverseOrderTreeWalk(n.getLeft(), s);
 		}
 	}
-	/*
-	public void printTree(){
-		StringBuilder [] sbs = new StringBuilder[getHeight()+1];
-		for (int i=0; i< sbs.length; i++) {
-			sbs[i] = new StringBuilder();
-		}
-		printTree(root, sbs, 0);
-	}
-	
-	public void printTree(Node node, StringBuilder[] sbs, int i){
-		int height = getHeight();
-		while(node != null){
-			sbs[i].append(String.format("%1$"+(height-i)*NODE_VIEW_LENGHT+ "s", ""));
-			sbs[i].append(String.format("%1$"+NODE_VIEW_LENGHT+ "s", node.getKey().toString()));
-			if(node.getLeft() != null){
-				printTree()
-			}
-			if(node.getRight() != null){
-				level.enqueue(node.getRight());
-			}
-			if(!level.isEmpty()){
-				s.append(", ");
-			}
-		}
-	}*/
 	
 	public int getHeight(){
 		return getHeight(root) - 1;
 	}
 	
-	private int getHeight(TreeNode n){
+	private int getHeight(BinaryTreeNode<T,E> n){
 		int height = 0;
-		if(n != null){
+		if(n != nil){
 			int hLeft = getHeight(n.getLeft());
 			int hRight = getHeight(n.getRight());
 			height = Math.max(hLeft, hRight) + 1;
@@ -203,9 +136,9 @@ public class BinaryTree<T extends Comparable<T>, E> {
 		return height;
 	}
 	
-	public TreeNode search(T key){
-		TreeNode n = root;
-		while(n != null && !n.getKey().equals(key)){
+	public BinaryTreeNode<T,E> search(T key){
+		BinaryTreeNode<T,E> n = root;
+		while(n != nil && !n.getKey().equals(key)){
 			if(key.compareTo(n.getKey()) < 0){
 				n = n.getLeft();
 			}else{
@@ -215,30 +148,30 @@ public class BinaryTree<T extends Comparable<T>, E> {
 		return n;
 	}
 	
-	public TreeNode minimum(){
+	public BinaryTreeNode<T,E> minimum(){
 		return minimum(root);
 	}
 	
-	public TreeNode minimum(TreeNode node){
-		TreeNode minimum = null;
-		if(node != null){
+	public BinaryTreeNode<T,E> minimum(BinaryTreeNode<T,E> node){
+		BinaryTreeNode<T,E> minimum = null;
+		if(node != nil){
 			minimum = node;
-			while(minimum.getLeft() != null){
+			while(minimum.getLeft() != nil){
 				minimum = minimum.getLeft();
 			}
 		}
 		return minimum;
 	}
 	
-	public TreeNode maximum(){
+	public BinaryTreeNode<T,E> maximum(){
 		return maximum(root);
 	}
 	
-	public TreeNode maximum(TreeNode node){
-		TreeNode maximum = null;
-		if(node != null){
+	public BinaryTreeNode<T,E> maximum(BinaryTreeNode<T,E> node){
+		BinaryTreeNode<T,E> maximum = null;
+		if(node != nil){
 			maximum = node;
-			while(maximum.getRight() != null){
+			while(maximum.getRight() != nil){
 				maximum = maximum.getRight();
 			}
 		}
@@ -246,11 +179,13 @@ public class BinaryTree<T extends Comparable<T>, E> {
 	}
 
 	public void insert(T key, E value){
-		TreeNode z = new TreeNode(key, value);
-		
-		TreeNode y = null;
-		TreeNode x = root;
-		while(x != null){
+		insert(new BinaryTreeNode<T,E>(key, value));
+	}
+	
+	protected void insert(BinaryTreeNode<T,E> z){
+		BinaryTreeNode<T,E> y = nil;
+		BinaryTreeNode<T,E> x = root;
+		while(x != nil){
 			y = x;
 			if(z.compareTo(x) < 0){
 				x = x.getLeft();
@@ -259,23 +194,25 @@ public class BinaryTree<T extends Comparable<T>, E> {
 			}
 		}
 		z.setParent(y);
-		if(y == null){
+		if(y == nil){
 			root = z;
 		}else if(z.compareTo(y) < 0){
 			y.setLeft(z);
 		}else{
 			y.setRight(z);
 		}
+		z.setLeft(nil);
+		z.setRight(nil);
 		size++;
 	}
 	
-	public TreeNode predecessor(TreeNode node){
-		TreeNode predecessor = null;
-		if(node.getLeft() != null){
+	public BinaryTreeNode<T,E> predecessor(BinaryTreeNode<T,E> node){
+		BinaryTreeNode<T,E> predecessor = null;
+		if(node.getLeft() != nil){
 			predecessor = maximum(node.getLeft());
 		}else{
 			predecessor = node.getParent();
-			while(predecessor != null && node.compareTo(predecessor.getLeft())==0){
+			while(predecessor != nil && node == predecessor.getLeft()){
 				node = predecessor;
 				predecessor = predecessor.getParent();
 			}
@@ -283,13 +220,13 @@ public class BinaryTree<T extends Comparable<T>, E> {
 		return predecessor;
 	}
 	
-	public TreeNode sucessor(TreeNode node){
-		TreeNode sucessor = null;
-		if(node.getRight() != null){
+	public BinaryTreeNode<T,E> sucessor(BinaryTreeNode<T,E> node){
+		BinaryTreeNode<T,E> sucessor = null;
+		if(node.getRight() != nil){
 			sucessor = minimum(node.getRight());
 		}else{
 			sucessor = node.getParent();
-			while(sucessor != null && node.equals(sucessor.getRight())){
+			while(sucessor != nil && node == sucessor.getRight()){
 				node = sucessor;
 				sucessor = sucessor.getParent();
 			}
@@ -297,26 +234,26 @@ public class BinaryTree<T extends Comparable<T>, E> {
 		return sucessor;
 	}
 	
-	public void transplant(TreeNode old, TreeNode fresh){
-		if(old.getParent() == null){
+	public void transplant(BinaryTreeNode<T,E> old, BinaryTreeNode<T,E> fresh){
+		if(old.getParent() == nil){
 			root = fresh;
 		} else if(old.equals(old.getParent().getLeft())){
 			old.getParent().setLeft(fresh);
 		}else{
 			old.getParent().setRight(fresh);
 		}
-		if(fresh != null){
+		if(fresh != nil){
 			fresh.setParent(old.getParent());
 		}
 	}
 	
-	public void delete(TreeNode z){
-		if(z.getLeft() == null){
+	public void delete(BinaryTreeNode<T,E> z){
+		if(z.getLeft() == nil){
 			transplant(z, z.getRight());
-		}else if(z.getRight() == null){
+		}else if(z.getRight() == nil){
 			transplant(z, z.getLeft());
 		}else {
-			TreeNode y = minimum(z.getRight());
+			BinaryTreeNode<T,E> y = minimum(z.getRight());
 			if(!y.getParent().equals(z)){
 				transplant(y, y.getRight());
 				y.setRight(z.getRight());

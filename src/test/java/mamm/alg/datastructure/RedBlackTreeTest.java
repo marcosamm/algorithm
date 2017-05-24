@@ -5,24 +5,24 @@ import mamm.alg.datastructure.BinaryTree.WalkOrder;
 
 import org.testng.annotations.Test;
 
-public class BinaryTreeTest {
+public class RedBlackTreeTest {
 	private final Integer [] ints = {10, 22, 31, 4, 15, 28, 18, 88, 59};
 	
 	@Test
 	public void walks(){
-		BinaryTree<Integer, Object> tree = new BinaryTree<>();
+		RedBlackTree<Integer, Object> tree = new RedBlackTree<>();
 		for(Integer i : ints){
 			tree.insert(i, null);
 		}
 		
 		String 
-		esperada = "[10, 4, 22, 15, 18, 31, 28, 88, 59]";
+		esperada = "[22, 10, 4, 15, 18, 31, 28, 88, 59]";
 		assertEquals(tree.treeWalk(WalkOrder.PRE_ORDER), esperada);
 		esperada = "[4, 10, 15, 18, 22, 28, 31, 59, 88]";
 		assertEquals(tree.treeWalk(WalkOrder.IN_ORDER), esperada);
-		esperada = "[4, 18, 15, 28, 59, 88, 31, 22, 10]";
+		esperada = "[4, 18, 15, 10, 28, 59, 88, 31, 22]";
 		assertEquals(tree.treeWalk(WalkOrder.POST_ORDER), esperada);
-		esperada = "[10, 4, 22, 15, 31, 18, 28, 88, 59]";
+		esperada = "[22, 10, 31, 4, 15, 28, 88, 18, 59]";
 		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
 		esperada = "[88, 59, 31, 28, 22, 18, 15, 10, 4]";
 		assertEquals(tree.treeWalk(WalkOrder.INVERSE_ORDER), esperada);
@@ -30,13 +30,13 @@ public class BinaryTreeTest {
 	
 	@Test
 	public void height(){
-		BinaryTree<Integer, Object> tree = new BinaryTree<>();
+		RedBlackTree<Integer, Object> tree = new RedBlackTree<>();
 		for(Integer i : ints){
 			tree.insert(i, null);
 		}
-		assertEquals(tree.getHeight(), 4);
+		assertEquals(tree.getHeight(), 3);
 		
-		tree = new BinaryTree<>();
+		tree = new RedBlackTree<>();
 		tree.insert(ints[0], null);
 		assertEquals(tree.getHeight(), 0);
 		tree.insert(ints[1], null);
@@ -45,11 +45,11 @@ public class BinaryTreeTest {
 	
 	@Test
 	public void minimumMaximum(){
-		BinaryTree<Integer, Object> tree = new BinaryTree<>();
+		RedBlackTree<Integer, Object> tree = new RedBlackTree<>();
 		for(Integer i : ints){
 			tree.insert(i, null);
 		}
-		assertEquals(tree.getHeight(), 4);
+		assertEquals(tree.getHeight(), 3);
 		assertEquals(tree.minimum().getKey().intValue(), 4);
 		assertEquals(tree.maximum().getKey().intValue(), 88);
 	}
@@ -57,7 +57,7 @@ public class BinaryTreeTest {
 	
 	@Test
 	public void predecessor(){
-		BinaryTree<Integer, Object> tree = new BinaryTree<>();
+		RedBlackTree<Integer, Object> tree = new RedBlackTree<>();
 		for(Integer i : ints){
 			tree.insert(i, null);
 		}
@@ -65,18 +65,11 @@ public class BinaryTreeTest {
 		assertEquals(tree.predecessor(tree.search(10)).getKey().intValue(), 4);
 		assertEquals(tree.predecessor(tree.search(22)).getKey().intValue(), 18);
 		assertEquals(tree.predecessor(tree.search(31)).getKey().intValue(), 28);
-		
-		Integer [] ints2 = {10, 8, 7, 9, 15, 12, 11, 14, 18, 17, 16};
-		tree = new BinaryTree<>();
-		for(Integer i : ints2){
-			tree.insert(i, null);
-		}
-		assertEquals(tree.predecessor(tree.search(16)).getKey().intValue(), 15);
 	}
 	
 	@Test
 	public void sucessor(){
-		BinaryTree<Integer, Object> tree = new BinaryTree<>();
+		RedBlackTree<Integer, Object> tree = new RedBlackTree<>();
 		for(Integer i : ints){
 			tree.insert(i, null);
 		}
@@ -87,29 +80,31 @@ public class BinaryTreeTest {
 	
 	@Test
 	public void deletion(){
-		BinaryTree<Integer, Object> tree = new BinaryTree<>();
+		RedBlackTree<Integer, Object> tree = new RedBlackTree<>();
 		for(Integer i : ints){
 			tree.insert(i, null);
 		}
 		
 		String esperada = null;
+		esperada = "[4, 10, 15, 18, 22, 28, 31, 59, 88]";
+		assertEquals(tree.treeWalk(WalkOrder.IN_ORDER), esperada);
 		tree.delete(tree.search(22));
-		esperada = "[10, 4, 28, 15, 31, 18, 88, 59]";
+		esperada = "[28, 10, 31, 4, 15, 88, 18, 59]";
 		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
 		tree.delete(tree.search(10));
-		esperada = "[15, 4, 28, 18, 31, 88, 59]";
+		esperada = "[28, 15, 31, 4, 18, 88, 59]";
 		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
-		tree.delete(tree.search(88));
-		esperada = "[15, 4, 28, 18, 31, 59]";
+		tree.delete(tree.search(15));
+		esperada = "[28, 18, 31, 4, 88, 59]";
 		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
-		tree.delete(tree.search(31));
-		esperada = "[15, 4, 28, 18, 59]";
+		tree.delete(tree.search(4));
+		esperada = "[28, 18, 31, 88, 59]";
 		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
 		tree.delete(tree.search(59));
-		esperada = "[15, 4, 28, 18]";
+		esperada = "[28, 18, 31, 88]";
 		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
-		tree.delete(tree.search(28));
-		esperada = "[15, 4, 18]";
+		tree.delete(tree.search(31));
+		esperada = "[28, 18, 88]";
 		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
 	}
 }

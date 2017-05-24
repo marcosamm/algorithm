@@ -1,7 +1,5 @@
 package mamm.alg.datastructure;
 
-import java.util.Arrays;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -84,18 +82,5 @@ public class Heap <T extends Comparable<T>>{
 		for(int i= (a.length-1)/2; i >= 0; i--){
 			heapfy(heapType, i);
 		}
-	} 
-	
-	public void buildMaxHeap(){
-		buildHeap(Type.MAX);
-	}
-	
-	public void buildMinHeap(){
-		buildHeap(Type.MIN);
-	}
-	
-	@Override
-	public String toString() {
-		return "heapSize: " + heapSize + "; a: " + Arrays.toString(a);
 	}
 }

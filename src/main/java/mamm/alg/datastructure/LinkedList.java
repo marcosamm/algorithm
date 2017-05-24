@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 public class LinkedList<T extends Comparable<T>, E> {
 	
 	@Getter
@@ -20,11 +19,6 @@ public class LinkedList<T extends Comparable<T>, E> {
 			this.element = element;
 			this.prev = this;
 			this.next = this;
-		}
-		
-		@Override
-		public String toString() {
-			return prev.getElement().getKey() + " <- " + element.getKey() + " -> " + next.getElement().getKey();
 		}
 	}
 	

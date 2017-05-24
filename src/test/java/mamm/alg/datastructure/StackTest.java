@@ -9,6 +9,11 @@ import org.testng.annotations.Test;
 
 public class StackTest {
 	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void capacityLessThanZero(){
+		new Stack<Integer>(0);
+	}
+	
 	@Test(expectedExceptions = BufferUnderflowException.class)
 	public void underflowException(){
 		Stack<Integer> stack = new Stack<Integer>(3);

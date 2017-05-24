@@ -6,6 +6,16 @@ import org.testng.annotations.Test;
 
 public class MergeSortTest {
 	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void sortNullArray(){
+		MergeSort.sort(null);
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void sortEmptyArray(){
+		MergeSort.sort(new Integer[0]);
+	}
+	
 	@Test
 	public void oneElement(){
 		Integer [] list = {5};
