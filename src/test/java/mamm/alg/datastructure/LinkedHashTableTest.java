@@ -63,7 +63,7 @@ public class LinkedHashTableTest {
 			hashTable.put(i, i);
 		}
 		
-		String esperada = 
+		String expected = 
 				 "[0] => 20, 15, 10, 5, 0, -5, -10, -15, -20\n"
 				+"[1] => 16, 11, 6, 1, -1, -6, -11, -16\n"
 				+"[2] => 17, 12, 7, 2, -2, -7, -12, -17\n"
@@ -72,7 +72,7 @@ public class LinkedHashTableTest {
 		
 		assertEquals(3, hashTable.get(3));
 		assertEquals(41, hashTable.getSize());
-		assertEquals(hashTable.toString(), esperada);
+		assertEquals(hashTable.toString(), expected);
 	}
 	
 	@Test
@@ -126,7 +126,7 @@ public class LinkedHashTableTest {
 			hashTable.put(i, i);
 		}
 		
-		String esperada = 
+		String expected = 
 				 "[0] => 18, 13, 10, 5, 0, -5, -10, -13, -18\n"
 				+"[1] => 20, 15, 7, 2, -2, -7, -15, -20\n"
 				+"[2] => 17, 12, 9, 4, -4, -9, -12, -17\n"
@@ -135,7 +135,7 @@ public class LinkedHashTableTest {
 		
 		assertEquals(3, hashTable.get(3));
 		assertEquals(41, hashTable.getSize());
-		assertEquals(hashTable.toString(), esperada);
+		assertEquals(hashTable.toString(), expected);
 	}
 	
 	@Test
@@ -189,7 +189,7 @@ public class LinkedHashTableTest {
 			hashTable.put(i, i);
 		}
 		
-		String esperada = 
+		String expected = 
 				 "[0] => 11, 9, 7\n"
 				+"[1] => 17, 15, 13, 0\n"
 				+"[2] => 19, 6, 4, 2\n"
@@ -199,6 +199,6 @@ public class LinkedHashTableTest {
 		
 		assertEquals(3, hashTable.get(3));
 		assertEquals(21, hashTable.getSize());
-		assertEquals(hashTable.toString(), esperada);
+		assertEquals(hashTable.toString(), expected);
 	}
 }

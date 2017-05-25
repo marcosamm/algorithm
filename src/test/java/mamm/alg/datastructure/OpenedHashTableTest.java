@@ -17,9 +17,9 @@ public class OpenedHashTableTest {
 			hashTable.put(i, i);
 		}
 		
-		String esperada = 
+		String expected = 
 				 "[22, 88, null, null, 4, 15, 28, 18, 59, 31, 10]\n";
-		assertEquals(hashTable.toString(), esperada);
+		assertEquals(hashTable.toString(), expected);
 		
 		assertEquals(hashTable.get(ints[ints.length/2]), ints[ints.length/2]);
 		assertEquals(hashTable.getSize(), ints.length);
@@ -28,10 +28,10 @@ public class OpenedHashTableTest {
 		assertNull(hashTable.get(removed));
 		assertEquals(hashTable.getSize(), ints.length-1);
 		
-		esperada = 
+		expected = 
 				"[22, 88, null, null, 4, DEL, 28, 18, 59, 31, 10]\n";
-		assertEquals(hashTable.toString(), esperada);
-		assertEquals(hashTable.toString(), esperada);
+		assertEquals(hashTable.toString(), expected);
+		assertEquals(hashTable.toString(), expected);
 	}
 	
 	@Test
@@ -41,9 +41,9 @@ public class OpenedHashTableTest {
 			hashTable.put(i, i);
 		}
 		
-		String esperada = 
+		String expected = 
 				 "[22, 59, null, 88, 4, null, 28, 18, 15, 31, 10]\n";
-		assertEquals(hashTable.toString(), esperada);
+		assertEquals(hashTable.toString(), expected);
 		
 		assertEquals(hashTable.get(ints[ints.length/2]), ints[ints.length/2]);
 		assertEquals(hashTable.getSize(), ints.length);
@@ -52,9 +52,9 @@ public class OpenedHashTableTest {
 		assertNull(hashTable.get(removed));
 		assertEquals(hashTable.getSize(), ints.length-1);
 		
-		esperada = 
+		expected = 
 				"[22, 59, null, 88, 4, null, 28, 18, DEL, 31, 10]\n";
-		assertEquals(hashTable.toString(), esperada);
-		assertEquals(hashTable.toString(), esperada);
+		assertEquals(hashTable.toString(), expected);
+		assertEquals(hashTable.toString(), expected);
 	}
 }

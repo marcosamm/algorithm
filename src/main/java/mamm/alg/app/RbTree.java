@@ -75,18 +75,4 @@ public class RbTree {
 	public void process(String fileName) throws IOException{
 		process(new File(fileName).toPath());
 	}
-
-	public static void main(String[] args) throws IOException {
-		File file = null;
-		if(args.length > 0){
-			file = new File(args[0]);
-		}
-		
-		if(file.exists()){
-			RbTree rb = new RbTree();
-			rb.process(file.toPath());
-		}else{
-			System.out.println("File not found");
-		}
-	}
 }

@@ -16,16 +16,16 @@ public class BinaryTreeTest {
 		}
 		
 		String 
-		esperada = "10, 4, 22, 15, 18, 31, 28, 88, 59";
-		assertEquals(tree.treeWalk(WalkOrder.PRE_ORDER), esperada);
-		esperada = "4, 10, 15, 18, 22, 28, 31, 59, 88";
-		assertEquals(tree.treeWalk(WalkOrder.IN_ORDER), esperada);
-		esperada = "4, 18, 15, 28, 59, 88, 31, 22, 10";
-		assertEquals(tree.treeWalk(WalkOrder.POST_ORDER), esperada);
-		esperada = "10, 4, 22, 15, 31, 18, 28, 88, 59";
-		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
-		esperada = "88, 59, 31, 28, 22, 18, 15, 10, 4";
-		assertEquals(tree.treeWalk(WalkOrder.INVERSE_ORDER), esperada);
+		expected = "10, 4, 22, 15, 18, 31, 28, 88, 59";
+		assertEquals(tree.treeWalk(WalkOrder.PRE_ORDER), expected);
+		expected = "4, 10, 15, 18, 22, 28, 31, 59, 88";
+		assertEquals(tree.treeWalk(WalkOrder.IN_ORDER), expected);
+		expected = "4, 18, 15, 28, 59, 88, 31, 22, 10";
+		assertEquals(tree.treeWalk(WalkOrder.POST_ORDER), expected);
+		expected = "10, 4, 22, 15, 31, 18, 28, 88, 59";
+		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), expected);
+		expected = "88, 59, 31, 28, 22, 18, 15, 10, 4";
+		assertEquals(tree.treeWalk(WalkOrder.INVERSE_ORDER), expected);
 	}
 	
 	@Test
@@ -92,24 +92,24 @@ public class BinaryTreeTest {
 			tree.insert(i, null);
 		}
 		
-		String esperada = null;
+		String expected = null;
 		tree.delete(tree.search(22));
-		esperada = "10, 4, 28, 15, 31, 18, 88, 59";
-		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
+		expected = "10, 4, 28, 15, 31, 18, 88, 59";
+		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), expected);
 		tree.delete(tree.search(10));
-		esperada = "15, 4, 28, 18, 31, 88, 59";
-		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
+		expected = "15, 4, 28, 18, 31, 88, 59";
+		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), expected);
 		tree.delete(tree.search(88));
-		esperada = "15, 4, 28, 18, 31, 59";
-		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
+		expected = "15, 4, 28, 18, 31, 59";
+		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), expected);
 		tree.delete(tree.search(31));
-		esperada = "15, 4, 28, 18, 59";
-		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
+		expected = "15, 4, 28, 18, 59";
+		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), expected);
 		tree.delete(tree.search(59));
-		esperada = "15, 4, 28, 18";
-		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
+		expected = "15, 4, 28, 18";
+		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), expected);
 		tree.delete(tree.search(28));
-		esperada = "15, 4, 18";
-		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), esperada);
+		expected = "15, 4, 18";
+		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), expected);
 	}
 }
