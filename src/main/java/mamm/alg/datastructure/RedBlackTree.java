@@ -23,40 +23,39 @@ public class RedBlackTree<T extends Comparable<T>, E> extends BinaryTree<T, E>{
 		insertFixup(z);
 	}
 	
-	private void insertFixup(BinaryTreeNode<T, E> n){
-		RedBlackTreeNode<T,E> z = (RedBlackTreeNode<T,E>) n;
+	private void insertFixup(BinaryTreeNode<T, E> z){
 		while(((RedBlackTreeNode<T,E>) z.getParent()).getColor() == RED){
-			if(z.getParent().equals(z.getParent().getParent().getLeft())){
+			if(z.getParent() == z.getParent().getParent().getLeft()){
 				RedBlackTreeNode<T,E> y = (RedBlackTreeNode<T,E>) z.getParent().getParent().getRight();
 				if(y.getColor() == RED){
-					((RedBlackTreeNode<T,E>) z.getParent()).setColor(BLACK);
-					y.setColor(BLACK);
-					((RedBlackTreeNode<T,E>) z.getParent().getParent()).setColor(RED);
-					z = (RedBlackTreeNode<T,E>) z.getParent().getParent();
+					((RedBlackTreeNode<T,E>) z.getParent()).setColor(BLACK);			//case 1
+					y.setColor(BLACK);													//case 1
+					((RedBlackTreeNode<T,E>) z.getParent().getParent()).setColor(RED);	//case 1
+					z = (RedBlackTreeNode<T,E>) z.getParent().getParent();				//case 1
 				}else{
-					if(z.equals(z.getParent().getRight())){
-						z = (RedBlackTreeNode<T,E>) z.getParent();
-						leftRotate(z);
+					if(z == z.getParent().getRight()){
+						z = (RedBlackTreeNode<T,E>) z.getParent();						//case 2
+						leftRotate(z);													//case 2
 					}
-					((RedBlackTreeNode<T,E>) z.getParent()).setColor(BLACK);
-					((RedBlackTreeNode<T,E>) z.getParent().getParent()).setColor(RED);
-					rightRotate(z.getParent().getParent());
+					((RedBlackTreeNode<T,E>) z.getParent()).setColor(BLACK);			//case 3
+					((RedBlackTreeNode<T,E>) z.getParent().getParent()).setColor(RED);	//case 3
+					rightRotate(z.getParent().getParent());								//case 3
 				}
 			}else{
 				RedBlackTreeNode<T,E> y = (RedBlackTreeNode<T,E>) z.getParent().getParent().getLeft();
 				if(y.getColor() == RED){
-					((RedBlackTreeNode<T,E>) z.getParent()).setColor(BLACK);
-					y.setColor(BLACK);
-					((RedBlackTreeNode<T,E>) z.getParent().getParent()).setColor(RED);
-					z = (RedBlackTreeNode<T,E>) z.getParent().getParent();
+					((RedBlackTreeNode<T,E>) z.getParent()).setColor(BLACK);			//case 1
+					y.setColor(BLACK);													//case 1
+					((RedBlackTreeNode<T,E>) z.getParent().getParent()).setColor(RED);	//case 1
+					z = (RedBlackTreeNode<T,E>) z.getParent().getParent();				//case 1
 				}else{
-					if(z.equals(z.getParent().getLeft())){
-						z = (RedBlackTreeNode<T,E>) z.getParent();
-						rightRotate(z);
+					if(z == z.getParent().getLeft()){
+						z = (RedBlackTreeNode<T,E>) z.getParent();						//case 2
+						rightRotate(z);													//case 2
 					}
-					((RedBlackTreeNode<T,E>) z.getParent()).setColor(BLACK);
-					((RedBlackTreeNode<T,E>) z.getParent().getParent()).setColor(RED);
-					leftRotate(z.getParent().getParent());
+					((RedBlackTreeNode<T,E>) z.getParent()).setColor(BLACK);			//case 3
+					((RedBlackTreeNode<T,E>) z.getParent().getParent()).setColor(RED);	//case 3
+					leftRotate(z.getParent().getParent());								//case 3
 				}
 			}
 		}
@@ -126,7 +125,7 @@ public class RedBlackTree<T extends Comparable<T>, E> extends BinaryTree<T, E>{
 			y.getLeft().setParent(y);
 			y.setColor(((RedBlackTreeNode<T,E>)z).getColor());
 		}
-		if(originalColor == BLACK && x != nil){
+		if(originalColor == BLACK /*&& x != nil*/){
 			deleteFixup((RedBlackTreeNode<T,E>) x);
 		}
 	}

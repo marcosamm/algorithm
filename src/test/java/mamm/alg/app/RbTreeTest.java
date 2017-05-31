@@ -10,7 +10,7 @@ import org.testng.reporters.Files;
 
 public class RbTreeTest {
 	
-	@Test
+	@Test(enabled=false)
 	public void file1() throws IOException{
 		RbTree rbTree = new RbTree();
 		rbTree.process("src/test/resources/dict1_input.txt");
