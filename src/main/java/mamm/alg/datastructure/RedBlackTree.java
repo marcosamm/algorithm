@@ -62,42 +62,6 @@ public class RedBlackTree<T extends Comparable<T>, E> extends BinaryTree<T, E>{
 		((RedBlackTreeNode<T,E>) root).setColor(BLACK);
 	}
 	
-	private void leftRotate(BinaryTreeNode<T, E> x){
-		BinaryTreeNode<T,E> y = x.getRight();
-		x.setRight(y.getLeft());
-		if(y.getLeft() != nil){
-			y.getLeft().setParent(x);
-		}
-		y.setParent(x.getParent());
-		if(x.getParent() == nil){
-			root = y;
-		}else if(x == x.getParent().getLeft()){
-			x.getParent().setLeft(y);
-		}else{
-			x.getParent().setRight(y);
-		}
-		y.setLeft(x);
-		x.setParent(y);
-	}
-	
-	private void rightRotate(BinaryTreeNode<T, E> x){
-		BinaryTreeNode<T,E> y = x.getLeft();
-		x.setLeft(y.getRight());
-		if(y.getRight() != nil){
-			y.getRight().setParent(x);
-		}
-		y.setParent(x.getParent());
-		if(x.getParent() == nil){
-			root = y;
-		}else if(x == x.getParent().getRight()){
-			x.getParent().setRight(y);
-		}else{
-			x.getParent().setLeft(y);
-		}
-		y.setRight(x);
-		x.setParent(y);
-	}
-	
 	@Override
 	public void delete(BinaryTreeNode<T,E> z){
 		BinaryTreeNode<T,E> x = null;
@@ -135,14 +99,14 @@ public class RedBlackTree<T extends Comparable<T>, E> extends BinaryTree<T, E>{
 			if(x == x.getParent().getLeft()){
 				RedBlackTreeNode<T,E> w = (RedBlackTreeNode<T,E>) x.getParent().getRight();
 				if(w.getColor() == RED){
-					w.setColor(BLACK);										//case 1
-					((RedBlackTreeNode<T,E>)x.getParent()).setColor(RED);	//case 1
-					leftRotate(x.getParent());								//case 1
-					w = (RedBlackTreeNode<T,E>) x.getParent().getRight();	//case 1
+					w.setColor(BLACK);												//case 1
+					((RedBlackTreeNode<T,E>)x.getParent()).setColor(RED);			//case 1
+					leftRotate(x.getParent());										//case 1
+					w = (RedBlackTreeNode<T,E>) x.getParent().getRight();			//case 1
 				}
 				if(((RedBlackTreeNode<T,E>)w.getLeft()).getColor() == BLACK && ((RedBlackTreeNode<T,E>)w.getRight()).getColor() == BLACK){
-					w.setColor(RED);										//case 2
-					x = (RedBlackTreeNode<T,E>) x.getParent();				//case 2
+					w.setColor(RED);												//case 2
+					x = (RedBlackTreeNode<T,E>) x.getParent();						//case 2
 				} else {
 					if(((RedBlackTreeNode<T,E>)w.getRight()).getColor() == BLACK){
 						((RedBlackTreeNode<T,E>)w.getLeft()).setColor(BLACK);		//case 3
@@ -152,16 +116,17 @@ public class RedBlackTree<T extends Comparable<T>, E> extends BinaryTree<T, E>{
 					}
 					w.setColor(((RedBlackTreeNode<T,E>)x.getParent()).getColor());	//case 4
 					((RedBlackTreeNode<T,E>)x.getParent()).setColor(BLACK);			//case 4
+					((RedBlackTreeNode<T,E>)w.getRight()).setColor(BLACK);			//case 4
 					leftRotate(x.getParent());										//case 4
 					x = (RedBlackTreeNode<T,E>) root;								//case 4
 				}
 			}else{
 				RedBlackTreeNode<T,E> w = (RedBlackTreeNode<T,E>) x.getParent().getLeft();
 				if(w.getColor() == RED){
-					w.setColor(BLACK);										//case 1
-					((RedBlackTreeNode<T,E>)x.getParent()).setColor(RED);	//case 1
-					rightRotate(x.getParent());								//case 1
-					w = (RedBlackTreeNode<T,E>) x.getParent().getLeft();	//case 1
+					w.setColor(BLACK);												//case 1
+					((RedBlackTreeNode<T,E>)x.getParent()).setColor(RED);			//case 1
+					rightRotate(x.getParent());										//case 1
+					w = (RedBlackTreeNode<T,E>) x.getParent().getLeft();			//case 1
 				}
 				if(((RedBlackTreeNode<T,E>)w.getRight()).getColor() == BLACK && ((RedBlackTreeNode<T,E>)w.getLeft()).getColor() == BLACK){
 					w.setColor(RED);												//case 2
@@ -175,6 +140,7 @@ public class RedBlackTree<T extends Comparable<T>, E> extends BinaryTree<T, E>{
 					}
 					w.setColor(((RedBlackTreeNode<T,E>)x.getParent()).getColor());	//case 4
 					((RedBlackTreeNode<T,E>)x.getParent()).setColor(BLACK);			//case 4
+					((RedBlackTreeNode<T,E>)w.getLeft()).setColor(BLACK);			//case 4
 					rightRotate(x.getParent());										//case 4
 					x = (RedBlackTreeNode<T,E>) root;								//case 4
 				}

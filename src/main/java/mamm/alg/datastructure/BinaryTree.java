@@ -235,14 +235,12 @@ public class BinaryTree<T extends Comparable<T>, E> {
 	public void transplant(BinaryTreeNode<T,E> old, BinaryTreeNode<T,E> fresh){
 		if(old.getParent() == nil){
 			root = fresh;
-		} else if(old.equals(old.getParent().getLeft())){
+		} else if(old == old.getParent().getLeft()){
 			old.getParent().setLeft(fresh);
 		}else{
 			old.getParent().setRight(fresh);
 		}
-		if(fresh != nil){
-			fresh.setParent(old.getParent());
-		}
+		fresh.setParent(old.getParent());
 	}
 	
 	public void delete(BinaryTreeNode<T,E> z){
@@ -260,6 +258,57 @@ public class BinaryTree<T extends Comparable<T>, E> {
 			transplant(z, y);
 			y.setLeft(z.getLeft());
 			y.getLeft().setParent(y);
+		}
+	}
+	
+	protected void leftRotate(BinaryTreeNode<T, E> x){
+		BinaryTreeNode<T,E> y = x.getRight();
+		x.setRight(y.getLeft());
+		if(y.getLeft() != nil){
+			y.getLeft().setParent(x);
+		}
+		y.setParent(x.getParent());
+		if(x.getParent() == nil){
+			root = y;
+		}else if(x == x.getParent().getLeft()){
+			x.getParent().setLeft(y);
+		}else{
+			x.getParent().setRight(y);
+		}
+		y.setLeft(x);
+		x.setParent(y);
+	}
+	
+	protected void rightRotate(BinaryTreeNode<T, E> x){
+		BinaryTreeNode<T,E> y = x.getLeft();
+		x.setLeft(y.getRight());
+		if(y.getRight() != nil){
+			y.getRight().setParent(x);
+		}
+		y.setParent(x.getParent());
+		if(x.getParent() == nil){
+			root = y;
+		}else if(x == x.getParent().getRight()){
+			x.getParent().setRight(y);
+		}else{
+			x.getParent().setLeft(y);
+		}
+		y.setRight(x);
+		x.setParent(y);
+	}
+	
+	public String extendedPreOrderTreeWalk(){
+		StringBuilder s = new StringBuilder();
+		extendedPreOrderTreeWalk(root, s);
+		return s.toString();
+	}
+	
+	protected void extendedPreOrderTreeWalk(BinaryTreeNode<T,E> n, StringBuilder s){
+		if(n != nil){
+			s.append(n.toString());
+			s.append("\n");
+			extendedPreOrderTreeWalk(n.getLeft(), s);
+			extendedPreOrderTreeWalk(n.getRight(), s);
 		}
 	}
 }

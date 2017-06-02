@@ -111,5 +111,12 @@ public class BinaryTreeTest {
 		tree.delete(tree.search(28));
 		expected = "15, 4, 18";
 		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), expected);
+		expected = 
+				"(NIL, 15, 4, 18)\n"+
+				"(15, 4, NIL, NIL)\n"+
+				"(15, 18, NIL, NIL)\n"
+		;
+		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
+		
 	}
 }

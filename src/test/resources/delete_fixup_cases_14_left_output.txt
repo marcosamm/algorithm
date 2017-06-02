@@ -1,0 +1,6 @@
+(NIL, 20, preto, 1, 15, 25)
+(20, 15, vermelho, 1, 11, 16)
+(15, 11, preto, 0, NIL, 13)
+(11, 13, vermelho, 0, NIL, NIL)
+(15, 16, preto, 0, NIL, NIL)
+(20, 25, preto, 0, NIL, NIL)
