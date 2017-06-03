@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class RbTreeMain {
 
 	public static void main(String[] args) throws IOException {
-		if(args.length > 1){
+		if(args.length > 0){
 			RbTree rb = new RbTree();
 			File inputFile = new File(args[0]);
 			if(inputFile.exists()){
@@ -17,11 +17,11 @@ public class RbTreeMain {
 				System.out.println("Input file not found: " + args[0]);
 			}
 			
-			if(args.length > 2){
+			if(args.length > 1){
 				File outputFile = new File(args[1]);
 				if(outputFile.exists()){
 					String output = String.join("\n", Files.readAllLines(outputFile.toPath()));
-					if(rb.getStringCheck().equals(output)){
+					if(rb.getStringCheck().trim().equals(output.trim())){
 						System.out.println("Input compatible with output");
 					}else{
 						System.out.println("Input incompatible with output");
@@ -37,6 +37,8 @@ public class RbTreeMain {
 				String word = scanner.nextLine();
 				if(!word.equals("EXIT")){
 					rb.rbSearch(word);
+				}else{
+					exit = true;
 				}
 			}while(!exit);
 			scanner.close();

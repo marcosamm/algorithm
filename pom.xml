@@ -13,9 +13,35 @@
     	<commons.lang.version>3.5</commons.lang.version>
     	<cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
     	<maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
+    	<maven-assembly-plugin.version>3.0.0</maven-assembly-plugin.version>
 	</properties>
 	<build>
 		<plugins>
+			<!-- 
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${maven-assembly-plugin.version}</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>mamm.alg.app.RbTreeMain</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
