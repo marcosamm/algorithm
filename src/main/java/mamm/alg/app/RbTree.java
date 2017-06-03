@@ -26,18 +26,19 @@ public class RbTree {
 				String operation = lineSplit[1];
 				BinaryTreeNode<String, String> n = rbTree.search(word);
 				if(operation.equals("1")){
-					if(n != null){
+					if(n == null){
 						rbTree.insert(word, null);
 					}else{
 						System.out.println("Word already inserted: " + word);
 					}
 				}else if(operation.equals("0")){
 					if(n != null){
+						System.out.println("Removing word: " + n.getKey().toString());
 						rbTree.delete(n);
 						rbPrint();
 						rbCheck();
 					}else{
-						System.out.println("Word not found: " + word);
+						System.out.println("Word not found or previously removed: " + word);
 					}
 				}else{
 					throw new UnknownError("Unknown operation");
@@ -52,7 +53,11 @@ public class RbTree {
 		BinaryTreeNode<String, String> n = null;
 		if(key != null && !key.isEmpty()){
 			n = rbTree.search(key);
-			System.out.println(n.getKey().toString());
+			if(n != null){
+				System.out.println("Found word: " + n.getKey().toString());
+			}else{
+				System.out.println("Word not found or previously removed: " + key);
+			}
 		}else{
 			rbPrint();
 			rbCheck();

@@ -342,8 +342,6 @@ public class RedBlackTreeTest {
 		
 		//Remove 20 - cases 1 and 4
 		tree.delete(tree.search(20));
-		expected = "2, 1, 5, 3, 11, 8";
-		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), expected);
 		expected = ""+
 				"(NIL, 2, preto, 1, 1, 5)\n"+
 				"(2, 1, preto, 0, NIL, NIL)\n"+
@@ -390,7 +388,7 @@ public class RedBlackTreeTest {
 		
 
 	@Test
-	public void deletionFixupCase4Right(){
+	public void deletionFixupCase24Right(){
 		RedBlackTree<Integer, Object> tree = new RedBlackTree<>();
 		String expected = null;
 		for(Integer i : intsDeleteFixupLeft){

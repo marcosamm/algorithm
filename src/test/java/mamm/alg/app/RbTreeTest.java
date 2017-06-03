@@ -26,7 +26,5 @@ public class RbTreeTest {
 			String expected = Files.readFile(new File(file.getAbsolutePath().replace("input", "output")));
 			assertEquals(rbTree.getStringCheck(), expected); 
 		}
-		
-		
 	}
 }

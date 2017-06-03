@@ -143,6 +143,11 @@ public class BinaryTree<T extends Comparable<T>, E> {
 				n = n.getRight();
 			}
 		}
+		
+		if(n == nil){
+			n = null;
+		}
+		
 		return n;
 	}
 	

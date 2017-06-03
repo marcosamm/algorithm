@@ -1,0 +1,8 @@
+(NIL, carro, preto, 1, abuso, palhaço)
+(carro, abuso, preto, 0, NIL, bolha)
+(abuso, bolha, vermelho, 0, NIL, NIL)
+(carro, palhaço, vermelho, 1, fussura, taturana)
+(palhaço, fussura, preto, 0, doce, pacote)
+(fussura, doce, vermelho, 0, NIL, NIL)
+(fussura, pacote, vermelho, 0, NIL, NIL)
+(palhaço, taturana, preto, 0, NIL, NIL)
