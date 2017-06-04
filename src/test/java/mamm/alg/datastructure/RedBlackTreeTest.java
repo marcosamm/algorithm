@@ -25,14 +25,14 @@ public class RedBlackTreeTest {
 		expected = "11, 2, 14, 1, 7, 15, 5, 8";
 		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), expected);		
 		expected = ""+
-				"(NIL, 11, preto, 1, 2, 14)\n"+
-				"(11, 2, vermelho, 1, 1, 7)\n"+
-				"(2, 1, preto, 0, NIL, NIL)\n"+
-				"(2, 7, preto, 0, 5, 8)\n"+
-				"(7, 5, vermelho, 0, NIL, NIL)\n"+
-				"(7, 8, vermelho, 0, NIL, NIL)\n"+
-				"(11, 14, preto, 0, NIL, 15)\n"+
-				"(14, 15, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 11, preto, 2, 2, 14)\n"+
+				"(11, 2, vermelho, 2, 1, 7)\n"+
+				"(2, 1, preto, 1, NIL, NIL)\n"+
+				"(2, 7, preto, 1, 5, 8)\n"+
+				"(7, 5, vermelho, 1, NIL, NIL)\n"+
+				"(7, 8, vermelho, 1, NIL, NIL)\n"+
+				"(11, 14, preto, 1, NIL, 15)\n"+
+				"(14, 15, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		
@@ -41,15 +41,15 @@ public class RedBlackTreeTest {
 		expected = "7, 2, 11, 1, 5, 8, 14, 4, 15";
 		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), expected);		
 		expected = ""+
-				"(NIL, 7, preto, 1, 2, 11)\n"+
-				"(7, 2, vermelho, 1, 1, 5)\n"+
-				"(2, 1, preto, 0, NIL, NIL)\n"+
-				"(2, 5, preto, 0, 4, NIL)\n"+
-				"(5, 4, vermelho, 0, NIL, NIL)\n"+
-				"(7, 11, vermelho, 1, 8, 14)\n"+
-				"(11, 8, preto, 0, NIL, NIL)\n"+
-				"(11, 14, preto, 0, NIL, 15)\n"+
-				"(14, 15, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 7, preto, 2, 2, 11)\n"+
+				"(7, 2, vermelho, 2, 1, 5)\n"+
+				"(2, 1, preto, 1, NIL, NIL)\n"+
+				"(2, 5, preto, 1, 4, NIL)\n"+
+				"(5, 4, vermelho, 1, NIL, NIL)\n"+
+				"(7, 11, vermelho, 2, 8, 14)\n"+
+				"(11, 8, preto, 1, NIL, NIL)\n"+
+				"(11, 14, preto, 1, NIL, 15)\n"+
+				"(14, 15, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 	}
@@ -64,14 +64,14 @@ public class RedBlackTreeTest {
 		expected = "11, 2, 20, 1, 15, 25, 13, 16";
 		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), expected);		
 		expected = ""+
-				"(NIL, 11, preto, 1, 2, 20)\n"+
-				"(11, 2, preto, 0, 1, NIL)\n"+
-				"(2, 1, vermelho, 0, NIL, NIL)\n"+
-				"(11, 20, vermelho, 1, 15, 25)\n"+
-				"(20, 15, preto, 0, 13, 16)\n"+
-				"(15, 13, vermelho, 0, NIL, NIL)\n"+
-				"(15, 16, vermelho, 0, NIL, NIL)\n"+
-				"(20, 25, preto, 0, NIL, NIL)\n"
+				"(NIL, 11, preto, 2, 2, 20)\n"+
+				"(11, 2, preto, 1, 1, NIL)\n"+
+				"(2, 1, vermelho, 1, NIL, NIL)\n"+
+				"(11, 20, vermelho, 2, 15, 25)\n"+
+				"(20, 15, preto, 1, 13, 16)\n"+
+				"(15, 13, vermelho, 1, NIL, NIL)\n"+
+				"(15, 16, vermelho, 1, NIL, NIL)\n"+
+				"(20, 25, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		
@@ -80,15 +80,15 @@ public class RedBlackTreeTest {
 		expected = "15, 11, 20, 2, 13, 16, 25, 1, 18";
 		assertEquals(tree.treeWalk(WalkOrder.BY_LEVEL_ORDER), expected);
 		expected = ""+
-				"(NIL, 15, preto, 1, 11, 20)\n"+
-				"(15, 11, vermelho, 1, 2, 13)\n"+
-				"(11, 2, preto, 0, 1, NIL)\n"+
-				"(2, 1, vermelho, 0, NIL, NIL)\n"+
-				"(11, 13, preto, 0, NIL, NIL)\n"+
-				"(15, 20, vermelho, 1, 16, 25)\n"+
-				"(20, 16, preto, 0, NIL, 18)\n"+
-				"(16, 18, vermelho, 0, NIL, NIL)\n"+
-				"(20, 25, preto, 0, NIL, NIL)\n"
+				"(NIL, 15, preto, 2, 11, 20)\n"+
+				"(15, 11, vermelho, 2, 2, 13)\n"+
+				"(11, 2, preto, 1, 1, NIL)\n"+
+				"(2, 1, vermelho, 1, NIL, NIL)\n"+
+				"(11, 13, preto, 1, NIL, NIL)\n"+
+				"(15, 20, vermelho, 2, 16, 25)\n"+
+				"(20, 16, preto, 1, NIL, 18)\n"+
+				"(16, 18, vermelho, 1, NIL, NIL)\n"+
+				"(20, 25, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 	}
@@ -114,13 +114,13 @@ public class RedBlackTreeTest {
 		tree.insert(2, null);
 		tree.insert(3, null);		
 		expected = ""+
-				"(NIL, 2, preto, 0, NIL, 3)\n"+
-				"(2, 3, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 2, preto, 1, NIL, 3)\n"+
+				"(2, 3, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		tree.delete(tree.search(2));
 		expected = ""+
-				"(NIL, 3, preto, 0, NIL, NIL)\n"
+				"(NIL, 3, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		
@@ -129,13 +129,13 @@ public class RedBlackTreeTest {
 		tree.insert(2, null);
 		tree.insert(1, null);		
 		expected = ""+
-				"(NIL, 2, preto, 0, 1, NIL)\n"+
-				"(2, 1, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 2, preto, 1, 1, NIL)\n"+
+				"(2, 1, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		tree.delete(tree.search(2));
 		expected = ""+
-				"(NIL, 1, preto, 0, NIL, NIL)\n"
+				"(NIL, 1, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		
@@ -145,15 +145,15 @@ public class RedBlackTreeTest {
 		tree.insert(1, null);
 		tree.insert(4, null);
 		expected = ""+
-				"(NIL, 2, preto, 0, 1, 4)\n"+
-				"(2, 1, vermelho, 0, NIL, NIL)\n"+
-				"(2, 4, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 2, preto, 1, 1, 4)\n"+
+				"(2, 1, vermelho, 1, NIL, NIL)\n"+
+				"(2, 4, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		tree.delete(tree.search(2));
 		expected = ""+
-				"(NIL, 4, preto, 0, 1, NIL)\n"+
-				"(4, 1, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 4, preto, 1, 1, NIL)\n"+
+				"(4, 1, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		
@@ -164,17 +164,17 @@ public class RedBlackTreeTest {
 		tree.insert(4, null);
 		tree.insert(3, null);
 		expected = ""+
-				"(NIL, 2, preto, 1, 1, 4)\n"+
-				"(2, 1, preto, 0, NIL, NIL)\n"+
-				"(2, 4, preto, 0, 3, NIL)\n"+
-				"(4, 3, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 2, preto, 2, 1, 4)\n"+
+				"(2, 1, preto, 1, NIL, NIL)\n"+
+				"(2, 4, preto, 1, 3, NIL)\n"+
+				"(4, 3, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		tree.delete(tree.search(2));
 		expected = ""+
-				"(NIL, 3, preto, 1, 1, 4)\n"+
-				"(3, 1, preto, 0, NIL, NIL)\n"+
-				"(3, 4, preto, 0, NIL, NIL)\n"
+				"(NIL, 3, preto, 2, 1, 4)\n"+
+				"(3, 1, preto, 1, NIL, NIL)\n"+
+				"(3, 4, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 	}
@@ -191,25 +191,25 @@ public class RedBlackTreeTest {
 		//Remove 1 - simple case
 		tree.delete(tree.search(1));
 		expected = ""+
-				"(NIL, 11, preto, 1, 2, 20)\n"+
-				"(11, 2, preto, 0, NIL, NIL)\n"+
-				"(11, 20, vermelho, 1, 15, 25)\n"+
-				"(20, 15, preto, 0, 13, 16)\n"+
-				"(15, 13, vermelho, 0, NIL, NIL)\n"+
-				"(15, 16, vermelho, 0, NIL, NIL)\n"+
-				"(20, 25, preto, 0, NIL, NIL)\n"
+				"(NIL, 11, preto, 2, 2, 20)\n"+
+				"(11, 2, preto, 1, NIL, NIL)\n"+
+				"(11, 20, vermelho, 2, 15, 25)\n"+
+				"(20, 15, preto, 1, 13, 16)\n"+
+				"(15, 13, vermelho, 1, NIL, NIL)\n"+
+				"(15, 16, vermelho, 1, NIL, NIL)\n"+
+				"(20, 25, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		
 		//Remove 2 - cases 1 and 4
 		tree.delete(tree.search(2));
 		expected = ""+
-				"(NIL, 20, preto, 1, 15, 25)\n"+
-				"(20, 15, vermelho, 1, 11, 16)\n"+
-				"(15, 11, preto, 0, NIL, 13)\n"+
-				"(11, 13, vermelho, 0, NIL, NIL)\n"+
-				"(15, 16, preto, 0, NIL, NIL)\n"+
-				"(20, 25, preto, 0, NIL, NIL)\n"
+				"(NIL, 20, preto, 2, 15, 25)\n"+
+				"(20, 15, vermelho, 2, 11, 16)\n"+
+				"(15, 11, preto, 1, NIL, 13)\n"+
+				"(11, 13, vermelho, 1, NIL, NIL)\n"+
+				"(15, 16, preto, 1, NIL, NIL)\n"+
+				"(20, 25, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 	}
@@ -226,25 +226,25 @@ public class RedBlackTreeTest {
 		//Remove 8 - simple case
 		tree.delete(tree.search(8));
 		expected = ""+
-				"(NIL, 11, preto, 1, 2, 20)\n"+
-				"(11, 2, vermelho, 1, 1, 5)\n"+
-				"(2, 1, preto, 0, NIL, NIL)\n"+
-				"(2, 5, preto, 0, NIL, NIL)\n"+
-				"(11, 20, preto, 0, 15, 25)\n"+
-				"(20, 15, vermelho, 0, NIL, NIL)\n"+
-				"(20, 25, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 11, preto, 2, 2, 20)\n"+
+				"(11, 2, vermelho, 2, 1, 5)\n"+
+				"(2, 1, preto, 1, NIL, NIL)\n"+
+				"(2, 5, preto, 1, NIL, NIL)\n"+
+				"(11, 20, preto, 1, 15, 25)\n"+
+				"(20, 15, vermelho, 1, NIL, NIL)\n"+
+				"(20, 25, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		
 		//Remove 1 - case 2 - left
 		tree.delete(tree.search(1));
 		expected = ""+
-				"(NIL, 11, preto, 1, 2, 20)\n"+
-				"(11, 2, preto, 0, NIL, 5)\n"+
-				"(2, 5, vermelho, 0, NIL, NIL)\n"+
-				"(11, 20, preto, 0, 15, 25)\n"+
-				"(20, 15, vermelho, 0, NIL, NIL)\n"+
-				"(20, 25, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 11, preto, 2, 2, 20)\n"+
+				"(11, 2, preto, 1, NIL, 5)\n"+
+				"(2, 5, vermelho, 1, NIL, NIL)\n"+
+				"(11, 20, preto, 1, 15, 25)\n"+
+				"(20, 15, vermelho, 1, NIL, NIL)\n"+
+				"(20, 25, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 	}
@@ -267,18 +267,18 @@ public class RedBlackTreeTest {
 		//Remove 15 - case 4 - right
 		tree.delete(tree.search(15));
 		expected = ""+
-				"(NIL, 2, preto, 1, 1, 11)\n"+
-				"(2, 1, preto, 0, NIL, NIL)\n"+
-				"(2, 11, preto, 0, 3, NIL)\n"+
-				"(11, 3, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 2, preto, 2, 1, 11)\n"+
+				"(2, 1, preto, 1, NIL, NIL)\n"+
+				"(2, 11, preto, 1, 3, NIL)\n"+
+				"(11, 3, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		//Remove 1 - case 3 an 4 - left
 		tree.delete(tree.search(1));
 		expected = ""+
-				"(NIL, 3, preto, 1, 2, 11)\n"+
-				"(3, 2, preto, 0, NIL, NIL)\n"+
-				"(3, 11, preto, 0, NIL, NIL)\n"
+				"(NIL, 3, preto, 2, 2, 11)\n"+
+				"(3, 2, preto, 1, NIL, NIL)\n"+
+				"(3, 11, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 	}
@@ -299,20 +299,20 @@ public class RedBlackTreeTest {
 		//Remove 2 - simple case
 		tree.delete(tree.search(2));
 		expected = ""+
-				"(NIL, 11, preto, 1, 5, 20)\n"+
-				"(11, 5, preto, 0, NIL, NIL)\n"+
-				"(11, 20, preto, 0, 15, 25)\n"+
-				"(20, 15, vermelho, 0, NIL, NIL)\n"+
-				"(20, 25, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 11, preto, 2, 5, 20)\n"+
+				"(11, 5, preto, 1, NIL, NIL)\n"+
+				"(11, 20, preto, 1, 15, 25)\n"+
+				"(20, 15, vermelho, 1, NIL, NIL)\n"+
+				"(20, 25, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		//Remove 5 - case 4 - left
 		tree.delete(tree.search(5));
 		expected = ""+
-				"(NIL, 20, preto, 1, 11, 25)\n"+
-				"(20, 11, preto, 0, NIL, 15)\n"+
-				"(11, 15, vermelho, 0, NIL, NIL)\n"+
-				"(20, 25, preto, 0, NIL, NIL)\n"
+				"(NIL, 20, preto, 2, 11, 25)\n"+
+				"(20, 11, preto, 1, NIL, 15)\n"+
+				"(11, 15, vermelho, 1, NIL, NIL)\n"+
+				"(20, 25, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 	}
@@ -330,25 +330,25 @@ public class RedBlackTreeTest {
 		//Remove 25 - simple case
 		tree.delete(tree.search(25));		
 		expected = ""+
-				"(NIL, 11, preto, 1, 2, 20)\n"+
-				"(11, 2, vermelho, 1, 1, 5)\n"+
-				"(2, 1, preto, 0, NIL, NIL)\n"+
-				"(2, 5, preto, 0, 3, 8)\n"+
-				"(5, 3, vermelho, 0, NIL, NIL)\n"+
-				"(5, 8, vermelho, 0, NIL, NIL)\n"+
-				"(11, 20, preto, 0, NIL, NIL)\n"
+				"(NIL, 11, preto, 2, 2, 20)\n"+
+				"(11, 2, vermelho, 2, 1, 5)\n"+
+				"(2, 1, preto, 1, NIL, NIL)\n"+
+				"(2, 5, preto, 1, 3, 8)\n"+
+				"(5, 3, vermelho, 1, NIL, NIL)\n"+
+				"(5, 8, vermelho, 1, NIL, NIL)\n"+
+				"(11, 20, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		
 		//Remove 20 - cases 1 and 4
 		tree.delete(tree.search(20));
 		expected = ""+
-				"(NIL, 2, preto, 1, 1, 5)\n"+
-				"(2, 1, preto, 0, NIL, NIL)\n"+
-				"(2, 5, vermelho, 1, 3, 11)\n"+
-				"(5, 3, preto, 0, NIL, NIL)\n"+
-				"(5, 11, preto, 0, 8, NIL)\n"+
-				"(11, 8, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 2, preto, 2, 1, 5)\n"+
+				"(2, 1, preto, 1, NIL, NIL)\n"+
+				"(2, 5, vermelho, 2, 3, 11)\n"+
+				"(5, 3, preto, 1, NIL, NIL)\n"+
+				"(5, 11, preto, 1, 8, NIL)\n"+
+				"(11, 8, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 	}
@@ -363,25 +363,25 @@ public class RedBlackTreeTest {
 		tree.delete(tree.search(13));
 		tree.delete(tree.search(16));
 		expected = ""+
-				"(NIL, 11, preto, 1, 2, 20)\n"+
-				"(11, 2, preto, 0, 1, 3)\n"+
-				"(2, 1, vermelho, 0, NIL, NIL)\n"+
-				"(2, 3, vermelho, 0, NIL, NIL)\n"+
-				"(11, 20, vermelho, 1, 15, 25)\n"+
-				"(20, 15, preto, 0, NIL, NIL)\n"+
-				"(20, 25, preto, 0, NIL, NIL)\n"
+				"(NIL, 11, preto, 2, 2, 20)\n"+
+				"(11, 2, preto, 1, 1, 3)\n"+
+				"(2, 1, vermelho, 1, NIL, NIL)\n"+
+				"(2, 3, vermelho, 1, NIL, NIL)\n"+
+				"(11, 20, vermelho, 2, 15, 25)\n"+
+				"(20, 15, preto, 1, NIL, NIL)\n"+
+				"(20, 25, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		
 		//Remove 25 - case 2
 		tree.delete(tree.search(25));
 		expected = ""+
-				"(NIL, 11, preto, 1, 2, 20)\n"+
-				"(11, 2, preto, 0, 1, 3)\n"+
-				"(2, 1, vermelho, 0, NIL, NIL)\n"+
-				"(2, 3, vermelho, 0, NIL, NIL)\n"+
-				"(11, 20, preto, 0, 15, NIL)\n"+
-				"(20, 15, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 11, preto, 2, 2, 20)\n"+
+				"(11, 2, preto, 1, 1, 3)\n"+
+				"(2, 1, vermelho, 1, NIL, NIL)\n"+
+				"(2, 3, vermelho, 1, NIL, NIL)\n"+
+				"(11, 20, preto, 1, 15, NIL)\n"+
+				"(20, 15, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 	}
@@ -404,20 +404,20 @@ public class RedBlackTreeTest {
 		tree.delete(tree.search(20));
 		
 		expected = ""+
-				"(NIL, 11, preto, 1, 2, 15)\n"+
-				"(11, 2, preto, 0, 1, 3)\n"+
-				"(2, 1, vermelho, 0, NIL, NIL)\n"+
-				"(2, 3, vermelho, 0, NIL, NIL)\n"+
-				"(11, 15, preto, 0, NIL, NIL)\n"
+				"(NIL, 11, preto, 2, 2, 15)\n"+
+				"(11, 2, preto, 1, 1, 3)\n"+
+				"(2, 1, vermelho, 1, NIL, NIL)\n"+
+				"(2, 3, vermelho, 1, NIL, NIL)\n"+
+				"(11, 15, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		//Remove 15 - case 4 - right
 		tree.delete(tree.search(15));
 		expected = ""+
-				"(NIL, 2, preto, 1, 1, 11)\n"+
-				"(2, 1, preto, 0, NIL, NIL)\n"+
-				"(2, 11, preto, 0, 3, NIL)\n"+
-				"(11, 3, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 2, preto, 2, 1, 11)\n"+
+				"(2, 1, preto, 1, NIL, NIL)\n"+
+				"(2, 11, preto, 1, 3, NIL)\n"+
+				"(11, 3, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 	}
@@ -439,19 +439,19 @@ public class RedBlackTreeTest {
 		//Remove 5 - case 4 - left
 		tree.delete(tree.search(5));
 		expected = ""+
-				"(NIL, 20, preto, 1, 11, 25)\n"+
-				"(20, 11, preto, 0, NIL, 15)\n"+
-				"(11, 15, vermelho, 0, NIL, NIL)\n"+
-				"(20, 25, preto, 0, NIL, NIL)\n"
+				"(NIL, 20, preto, 2, 11, 25)\n"+
+				"(20, 11, preto, 1, NIL, 15)\n"+
+				"(11, 15, vermelho, 1, NIL, NIL)\n"+
+				"(20, 25, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 		
 		//Remove 25 - cases 3 and 4 - right
 		tree.delete(tree.search(25));
 		expected = ""+
-				"(NIL, 15, preto, 1, 11, 20)\n"+
-				"(15, 11, preto, 0, NIL, NIL)\n"+
-				"(15, 20, preto, 0, NIL, NIL)\n"
+				"(NIL, 15, preto, 2, 11, 20)\n"+
+				"(15, 11, preto, 1, NIL, NIL)\n"+
+				"(15, 20, preto, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 	}
@@ -464,15 +464,15 @@ public class RedBlackTreeTest {
 		}
 		
 		String expected = ""+
-				"(NIL, 22, preto, 1, 10, 31)\n"+
-				"(22, 10, vermelho, 1, 4, 15)\n"+
-				"(10, 4, preto, 0, NIL, NIL)\n"+
-				"(10, 15, preto, 0, NIL, 18)\n"+
-				"(15, 18, vermelho, 0, NIL, NIL)\n"+
-				"(22, 31, vermelho, 1, 28, 88)\n"+
-				"(31, 28, preto, 0, NIL, NIL)\n"+
-				"(31, 88, preto, 0, 59, NIL)\n"+
-				"(88, 59, vermelho, 0, NIL, NIL)\n"
+				"(NIL, 22, preto, 2, 10, 31)\n"+
+				"(22, 10, vermelho, 2, 4, 15)\n"+
+				"(10, 4, preto, 1, NIL, NIL)\n"+
+				"(10, 15, preto, 1, NIL, 18)\n"+
+				"(15, 18, vermelho, 1, NIL, NIL)\n"+
+				"(22, 31, vermelho, 2, 28, 88)\n"+
+				"(31, 28, preto, 1, NIL, NIL)\n"+
+				"(31, 88, preto, 1, 59, NIL)\n"+
+				"(88, 59, vermelho, 1, NIL, NIL)\n"
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 	}

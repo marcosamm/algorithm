@@ -112,7 +112,7 @@ public class RedBlackTree<T extends Comparable<T>, E> extends BinaryTree<T, E>{
 						((RedBlackTreeNode<T,E>)w.getLeft()).setColor(BLACK);		//case 3
 						w.setColor(RED);											//case 3
 						rightRotate(w);												//case 3
-						w = (RedBlackTreeNode<T,E>) w.getParent().getRight();		//case 3
+						w = (RedBlackTreeNode<T,E>) x.getParent().getRight();		//case 3
 					}
 					w.setColor(((RedBlackTreeNode<T,E>)x.getParent()).getColor());	//case 4
 					((RedBlackTreeNode<T,E>)x.getParent()).setColor(BLACK);			//case 4
@@ -136,7 +136,7 @@ public class RedBlackTree<T extends Comparable<T>, E> extends BinaryTree<T, E>{
 						((RedBlackTreeNode<T,E>)w.getRight()).setColor(BLACK);		//case 3
 						w.setColor(RED);											//case 3
 						leftRotate(w);												//case 3
-						w = (RedBlackTreeNode<T,E>) w.getParent().getLeft();		//case 3
+						w = (RedBlackTreeNode<T,E>) x.getParent().getLeft();		//case 3
 					}
 					w.setColor(((RedBlackTreeNode<T,E>)x.getParent()).getColor());	//case 4
 					((RedBlackTreeNode<T,E>)x.getParent()).setColor(BLACK);			//case 4
@@ -194,7 +194,7 @@ public class RedBlackTree<T extends Comparable<T>, E> extends BinaryTree<T, E>{
 	
 	public int blackHeight(RedBlackTreeNode<T,E> n){
 		if(n == nil){
-			return 0;
+			return 1;
 		}
 		int blackHeightLeft = blackHeight((RedBlackTreeNode<T,E>)n.getLeft());
 		if(n.getLeft() != nil && ((RedBlackTreeNode<T,E>)n.getLeft()).getColor() == BLACK){
