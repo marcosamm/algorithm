@@ -1,0 +1,1 @@
+(NIL, root, preto, 1, NIL, NIL)

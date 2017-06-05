@@ -3,17 +3,22 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.marcosamm</groupId>
 	<artifactId>algorithm</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	
 	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-    	<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source>
+    	<maven.compiler.target>1.7</maven.compiler.target>
     	<testng.version>6.11</testng.version>
     	<lombok.version>1.16.16</lombok.version>
     	<commons.lang.version>3.5</commons.lang.version>
     	<cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
     	<maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
     	<maven-assembly-plugin.version>3.0.0</maven-assembly-plugin.version>
+    	<maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
+    	<jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
+    	<findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
+    	<maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
+    	<maven-site-plugin.version>3.6</maven-site-plugin.version>
 	</properties>
 	<build>
 		<plugins>
@@ -45,6 +50,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven-jar-plugin.version}</version>
 				<configuration>
 					<archive>
 						<manifest>
@@ -64,6 +70,38 @@
 							<ignore>mamm/alg/app/RbTreeMain.class</ignore>
 						</excludes>
 					</instrumentation>
+				</configuration>
+			</plugin>
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>${maven-site-plugin.version}</version>
+				<configuration>
+					<reportPlugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-project-info-reports-plugin</artifactId>
+							<version>${maven-project-info-reports-plugin.version}</version>
+							<configuration>
+								<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+								<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+							</configuration>
+							<reports>
+								<report>dependencies</report>
+								<report>scm</report>
+							</reports>
+				       </plugin>
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>jdepend-maven-plugin</artifactId>
+							<version>${jdepend-maven-plugin.version}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>findbugs-maven-plugin</artifactId>
+							<version>${findbugs-maven-plugin.version}</version>
+						</plugin>
+					</reportPlugins>
 				</configuration>
 			</plugin>
 			<!-- Below plug-in is used to execute tests -->

@@ -1,0 +1,7 @@
+(NIL, 5, preto, 2, 3, 7)
+(5, 3, vermelho, 2, 2, 4)
+(3, 2, preto, 1, 1, NIL)
+(2, 1, vermelho, 1, NIL, NIL)
+(3, 4, preto, 1, NIL, NIL)
+(5, 7, preto, 1, 6, NIL)
+(7, 6, vermelho, 1, NIL, NIL)

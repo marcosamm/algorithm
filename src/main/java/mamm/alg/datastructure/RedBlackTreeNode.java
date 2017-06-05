@@ -18,6 +18,16 @@ public class RedBlackTreeNode <T extends Comparable<T>, E> extends BinaryTreeNod
 	}
 	
 	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+	
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("(");
