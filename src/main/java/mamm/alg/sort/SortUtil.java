@@ -42,7 +42,7 @@ public class SortUtil {
 		T max = null;
 		try {
 			max = (T) t.getClass().getDeclaredField("MAX_VALUE").get(null);
-		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
+		} catch (Exception e) {
 			throw new RuntimeException("Could not find the greatest value");
 		}
 		return max;
@@ -56,13 +56,17 @@ public class SortUtil {
 		T min = null;
 		try {
 			min = (T) t.getClass().getDeclaredField("MIN_VALUE").get(null);
-		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
+		} catch (Exception e) {
 			throw new RuntimeException("Could not find the greatest value");
 		}
 		return min;
 	}
 	
 	public static <T extends Comparable<T>> T getMaxValue(T[] array){
+		if(array == null){
+			throw new IllegalArgumentException("a is null");
+		}
+		
 		T max = getLowestPossibleValueOf(array[0]);
 		
 		for(int i = 0; i < array.length; i++){
@@ -74,25 +78,19 @@ public class SortUtil {
 		return max;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<T>> T getMinValue(T[] a){
 		if(a == null){
 			throw new IllegalArgumentException("a is null");
 		}
-		T max = null;
-		try {
-			max = (T) a[0].getClass().getDeclaredField("MAX_VALUE").get(null);
-		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-			throw new RuntimeException("Could not find the lowest value");
-		}
+		T min = getHighestPossibleValueOf(a[0]);
 		
 		for(int i = 0; i < a.length; i++){
-			if(a[i].compareTo(max) < 0){
-				max = a[i];
+			if(a[i].compareTo(min) < 0){
+				min = a[i];
 			}
 		}
 		
-		return max;
+		return min;
 	}
 	
 	public static boolean sameNumberOfDigits(String [] a){
