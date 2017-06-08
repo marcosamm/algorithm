@@ -30,7 +30,7 @@ public class RbTreeMain {
 					System.out.println("Output file not found: " + args[1]);
 				}
 			}
-			Scanner scanner = new Scanner(System.in);
+			Scanner scanner = new Scanner(System.in, "UTF-8");
 			boolean exit = false;
 			do{
 				System.out.print("Enter a word to search or 'EXIT' to exit: ");

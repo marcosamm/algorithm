@@ -476,4 +476,23 @@ public class RedBlackTreeTest {
 		;
 		assertEquals(tree.extendedPreOrderTreeWalk(), expected);
 	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void deleteNullNode(){
+		RedBlackTree<Integer, Object> tree = new RedBlackTree<>();
+		for(Integer i : ints){
+			tree.insert(i, null);
+		}
+		tree.delete(null);
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void deleteNoRedBlackTreeNode(){
+		RedBlackTree<Integer, Object> tree = new RedBlackTree<>();
+		for(Integer i : ints){
+			tree.insert(i, null);
+		}
+		BinaryTreeNode<Integer, Object> b = new BinaryTreeNode<>(1, null);
+		tree.delete(b);
+	}
 }

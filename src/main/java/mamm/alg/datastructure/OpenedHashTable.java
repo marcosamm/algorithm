@@ -21,7 +21,7 @@ public class OpenedHashTable <E> extends AbstractHashTable<E>{
 	
 	/**
 	 * Division Method + Linear Probing.
-	 * @param m
+	 * @param m Hash length.
 	 */
 	public OpenedHashTable(int m){
 		super(m);
@@ -30,9 +30,9 @@ public class OpenedHashTable <E> extends AbstractHashTable<E>{
 	
 	/**
 	 * Division Method + Quadratic Probing.
-	 * @param m
-	 * @param c1
-	 * @param c2
+	 * @param m Hash length.
+	 * @param c1 Constant used in quadratic probing.
+	 * @param c2 Constant used in quadratic probing.
 	 */
 	public OpenedHashTable(int m, float c1, float c2){
 		super(m);

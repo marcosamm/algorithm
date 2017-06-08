@@ -11,6 +11,7 @@ public class RedBlackTreeNode <T extends Comparable<T>, E> extends BinaryTreeNod
 	}
 	
 	private Color color;
+	private int blackHeight;
 	
 	public RedBlackTreeNode(T key, E value, Color color){
 		super(key, value);
@@ -47,7 +48,7 @@ public class RedBlackTreeNode <T extends Comparable<T>, E> extends BinaryTreeNod
 		sb.append(", ");
 		sb.append(color==Color.RED?"vermelho":"preto");
 		sb.append(", ");
-		//sb.append(blackHeight(n));
+		sb.append(blackHeight);
 		sb.append(", ");
 		if(left == null){
 			sb.append("null");

@@ -1,5 +1,7 @@
 package mamm.alg.datastructure;
 
+import java.util.Random;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -47,8 +49,9 @@ public abstract class AbstractHashTable <E> implements HashTable<Integer, E>{
 	}
 	
 	public AbstractHashTable(int m, int p){
-		Integer a = (int) (1 + Math.random()*(p-1));
-		Integer b = (int) Math.random()*p; 
+		Random r = new Random();
+		Integer a = 1 + r.nextInt(p+1);
+		Integer b = r.nextInt(p+1);
 		initialize(m, HashMethod.UNVERSAL, p, a, b);
 	}
 	

@@ -7,14 +7,18 @@ import mamm.alg.datastructure.RedBlackTreeNode.Color;
 
 public class RedBlackTree<T extends Comparable<T>, E> extends BinaryTree<T, E>{
 	
+	private boolean recalcBlackHeight;
+	
 	public RedBlackTree() {
 		nil = new RedBlackTreeNode<T, E>(null, null, BLACK);
 		root = nil;
+		recalcBlackHeight = true;
 	}
 	
 	@Override
 	public void insert(T key, E value){
 		insert(new RedBlackTreeNode<T,E>(key, value, RED));
+		recalcBlackHeight = true;
 	}
 	
 	@Override
@@ -64,6 +68,9 @@ public class RedBlackTree<T extends Comparable<T>, E> extends BinaryTree<T, E>{
 	
 	@Override
 	public void delete(BinaryTreeNode<T,E> z){
+		if(z == null || !(z instanceof RedBlackTreeNode)){
+			throw new IllegalArgumentException("Unexpected type: " + z);
+		}
 		BinaryTreeNode<T,E> x = null;
 		RedBlackTreeNode<T,E> y = (RedBlackTreeNode<T,E>) z;
 		Color originalColor = y.getColor();
@@ -92,6 +99,7 @@ public class RedBlackTree<T extends Comparable<T>, E> extends BinaryTree<T, E>{
 		if(originalColor == BLACK /*&& x != nil*/){
 			deleteFixup((RedBlackTreeNode<T,E>) x);
 		}
+		recalcBlackHeight = true;
 	}
 	
 	void deleteFixup(RedBlackTreeNode<T,E> x){
@@ -150,60 +158,39 @@ public class RedBlackTree<T extends Comparable<T>, E> extends BinaryTree<T, E>{
 	}
 	
 	public String extendedPreOrderTreeWalk(){
+		if(recalcBlackHeight){
+			calcBlackHeight((RedBlackTreeNode<T,E>)root);
+			recalcBlackHeight = false;
+		}
 		StringBuilder s = new StringBuilder();
 		extendedPreOrderTreeWalk((RedBlackTreeNode<T,E>)root, s);
 		return s.toString();
 	}
 	
-	public void extendedPreOrderTreeWalk(RedBlackTreeNode<T,E> n, StringBuilder s){
+	private void extendedPreOrderTreeWalk(RedBlackTreeNode<T,E> n, StringBuilder s){
 		if(n != nil){
-			writeNode(n, s);
+			s.append(n.toString());
 			s.append("\n");
 			extendedPreOrderTreeWalk((RedBlackTreeNode<T,E>)n.getLeft(), s);
 			extendedPreOrderTreeWalk((RedBlackTreeNode<T,E>)n.getRight(), s);
 		}
 	}
 	
-	public void writeNode(RedBlackTreeNode<T,E> n, StringBuilder sb) {
-		sb.append("(");
-		if(n.getParent().getKey() == null){
-			sb.append("NIL");
-		}else{
-			sb.append(n.getParent().getKey().toString());
-		}
-		sb.append(", ");
-		sb.append(n.getKey().toString());
-		sb.append(", ");
-		sb.append(n.getColor()==Color.RED?"vermelho":"preto");
-		sb.append(", ");
-		sb.append(blackHeight(n));
-		sb.append(", ");
-		if(n.getLeft().getKey() == null){
-			sb.append("NIL");
-		}else{
-			sb.append(n.getLeft().getKey().toString());
-		}
-		sb.append(", ");
-		if(n.getRight().getKey() == null){
-			sb.append("NIL");
-		}else{
-			sb.append(n.getRight().getKey().toString());
-		}
-		sb.append(")");
-	}
-	
-	public int blackHeight(RedBlackTreeNode<T,E> n){
+	private void calcBlackHeight(RedBlackTreeNode<T,E> n){
 		if(n == nil){
-			return 1;
+			n.setBlackHeight(1);
+		}else{
+			calcBlackHeight((RedBlackTreeNode<T,E>)n.getLeft());
+			int blackHeightLeft = ((RedBlackTreeNode<T,E>)n.getLeft()).getBlackHeight();
+			if(n.getLeft() != nil && ((RedBlackTreeNode<T,E>)n.getLeft()).getColor() == BLACK){
+				blackHeightLeft++;
+			}
+			calcBlackHeight((RedBlackTreeNode<T,E>)n.getRight());
+			int blackHeightRight = ((RedBlackTreeNode<T,E>)n.getRight()).getBlackHeight();
+			if(n.getRight() != nil && ((RedBlackTreeNode<T,E>)n.getRight()).getColor() == BLACK){
+				blackHeightRight++;
+			}
+			n.setBlackHeight(Math.max(blackHeightLeft, blackHeightRight));
 		}
-		int blackHeightLeft = blackHeight((RedBlackTreeNode<T,E>)n.getLeft());
-		if(n.getLeft() != nil && ((RedBlackTreeNode<T,E>)n.getLeft()).getColor() == BLACK){
-			blackHeightLeft++;
-		}
-		int blackHeightRight = blackHeight((RedBlackTreeNode<T,E>)n.getRight());
-		if(n.getRight() != nil && ((RedBlackTreeNode<T,E>)n.getRight()).getColor() == BLACK){
-			blackHeightRight++;
-		}
-		return Math.max(blackHeightLeft, blackHeightRight);
 	}
 }

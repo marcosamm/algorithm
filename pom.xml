@@ -8,6 +8,9 @@
 	<properties>
 		<maven.compiler.source>1.7</maven.compiler.source>
     	<maven.compiler.target>1.7</maven.compiler.target>
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    	
     	<testng.version>6.11</testng.version>
     	<lombok.version>1.16.16</lombok.version>
     	<commons.lang.version>3.5</commons.lang.version>
@@ -19,8 +22,47 @@
     	<findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
     	<maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
     	<maven-site-plugin.version>3.6</maven-site-plugin.version>
+    	<maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
 	</properties>
+	<url>https://github.com/marcosamm/algorithm</url>
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>${maven-project-info-reports-plugin.version}</version>
+		       </plugin>
+		       <plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>jdepend-maven-plugin</artifactId>
+					<version>${jdepend-maven-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>findbugs-maven-plugin</artifactId>
+					<version>${findbugs-maven-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<version>${cobertura-maven-plugin.version}</version>
+					<configuration>
+						<instrumentation>
+							<ignoreTrivial>true</ignoreTrivial>
+							<excludes>
+								<ignore>mamm/alg/app/RbTreeMain.class</ignore>
+							</excludes>
+						</instrumentation>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven-javadoc-plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<!-- 
 			<plugin>
@@ -59,51 +101,6 @@
 					</archive>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>${cobertura-maven-plugin.version}</version>
-				<configuration>
-					<instrumentation>
-						<ignoreTrivial>true</ignoreTrivial>
-						<excludes>
-							<ignore>mamm/alg/app/RbTreeMain.class</ignore>
-						</excludes>
-					</instrumentation>
-				</configuration>
-			</plugin>
-			<plugin>
-			  <groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>${maven-site-plugin.version}</version>
-				<configuration>
-					<reportPlugins>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-project-info-reports-plugin</artifactId>
-							<version>${maven-project-info-reports-plugin.version}</version>
-							<configuration>
-								<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
-								<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-							</configuration>
-							<reports>
-								<report>dependencies</report>
-								<report>scm</report>
-							</reports>
-				       </plugin>
-						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>jdepend-maven-plugin</artifactId>
-							<version>${jdepend-maven-plugin.version}</version>
-						</plugin>
-						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>findbugs-maven-plugin</artifactId>
-							<version>${findbugs-maven-plugin.version}</version>
-						</plugin>
-					</reportPlugins>
-				</configuration>
-			</plugin>
 			<!-- Below plug-in is used to execute tests -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -117,6 +114,30 @@
 			</plugin>
 		</plugins>
 	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+	       </plugin>
+	       <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
 	<dependencies>
 		<dependency>
             <groupId>org.projectlombok</groupId>
