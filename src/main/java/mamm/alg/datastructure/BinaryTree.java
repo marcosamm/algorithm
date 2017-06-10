@@ -316,4 +316,18 @@ public class BinaryTree<T extends Comparable<T>, E> {
 			extendedPreOrderTreeWalk(n.getRight(), s);
 		}
 	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		BinaryTreeNode<T,E> d = root;
+		while(!d.equals(nil)){
+			delete(d);
+			d.setLeft(null);
+			d.setParent(null);
+			d.setRight(null);
+			d = root;
+		}
+		d.setParent(null);
+		super.finalize();
+	}
 }

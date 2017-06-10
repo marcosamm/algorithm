@@ -4,7 +4,7 @@ import lombok.Getter;
 
 public class MaxSubarray {
 	@Getter
-	class MaxCrossingValues{
+	static class MaxCrossingValues{
 		private int maxLeft;
 		private int maxRight;
 		private int sum;

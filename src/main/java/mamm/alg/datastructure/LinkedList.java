@@ -67,6 +67,8 @@ public class LinkedList<T extends Comparable<T>, E> {
 		Link next = link.getNext();
 		prev.setNext(next);
 		next.setPrev(prev);
+		link.setNext(null);
+		link.setPrev(null);
 		size--;
 	}
 	
@@ -140,7 +142,9 @@ public class LinkedList<T extends Comparable<T>, E> {
 	
 	@Override
 	protected void finalize() throws Throwable {
-		// TODO Desfazer links
+		while(sentinel.next != null){
+			delete(sentinel.next);
+		}
 		super.finalize();
 	}
 }
