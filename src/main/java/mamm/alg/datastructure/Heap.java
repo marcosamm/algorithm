@@ -35,6 +35,13 @@ public class Heap <T extends Comparable<T>>{
 		return a.length;
 	}
 	
+	public boolean isEmpty(){
+		if(heapSize == 0){
+			return true;
+		}
+		return false;
+	}
+	
 	public T get(int i){
 		return a[i];
 	}

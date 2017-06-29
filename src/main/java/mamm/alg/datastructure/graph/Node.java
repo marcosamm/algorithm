@@ -9,15 +9,34 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Node<T> {
+public class Node<T extends VertexInterf> {
+	public static enum Color{
+		WHITE, GRAY, BLACK;
+	}
+	
 	private T vertex;
 	
-	private Set<Edge<T>> leavesEdges;
-	private Set<Edge<T>> entersEdges;
+	private Set<Edge<T>> leavesEdges = new TreeSet<>();
+	private Set<Edge<T>> entersEdges = new TreeSet<>();
+	
+	private Color color;
+	private int d;
+	private int f;
+	private Node<T> parent;
+	
+	public Node(){
+	}
 	
 	public Node(T vertex){
 		this.vertex = vertex;
-		leavesEdges = new TreeSet<>();
+	}
+	
+	public String getLabel(){
+		String label = null;
+		if(vertex != null){
+			label = vertex.getLabel();
+		}
+		return label;
 	}
 	
 	public void addLeaveEdge(Edge<T> edge){
@@ -43,6 +62,14 @@ public class Node<T> {
 		return leavEdge;
 	}
 	
+	public Set<Node<T>> getAdjacents(){
+		Set<Node<T>> adjs = new TreeSet<>();
+		for (Edge<T> edge : leavesEdges) {
+			adjs.add(edge.to);
+		}
+		return adjs;
+	}
+	
 	public void addEnterEdge(Edge<T> edge){
 		entersEdges.add(edge);
 	}
@@ -64,5 +91,16 @@ public class Node<T> {
 			}
 		}
 		return enterEdge;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(vertex.getLabel());
+		for(Edge<T> e : leavesEdges){
+			sb.append(" => ");
+			sb.append(e.to.getLabel());
+		}
+		return sb.toString();
 	}
 }

@@ -1,7 +1,7 @@
 package mamm.alg.datastructure.graph;
 
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.SortedSet;
@@ -30,7 +30,7 @@ public class GraphAdjacencyMatrix<T extends VertexInterf> implements Graph<T> {
 		numVertices = 0;
 		numEdges = 0;
 		unUsedIndexes = new TreeSet<Integer>();
-		usedInexes = new HashMap<>();
+		usedInexes = new LinkedHashMap<>();
 		for(int i=0; i < adjMatrix.length; i++){
 			unUsedIndexes.add(i);
 		}

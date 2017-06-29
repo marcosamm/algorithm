@@ -41,4 +41,9 @@ public class Vertex implements VertexInterf{
 			return false;
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return label;
+	}
 }
