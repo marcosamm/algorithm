@@ -20,7 +20,7 @@ public class RbTreeTest {
 				return name.endsWith("input.txt");
 			}
 		};
-		File folder = new File("src/test/resources/");
+		File folder = new File("src/test/resources/rbtree/");
 		for(File file : folder.listFiles(ff)){
 			RbTree rbTree = new RbTree();
 			rbTree.process(file.getAbsolutePath());
@@ -31,7 +31,7 @@ public class RbTreeTest {
 	
 	@Test
 	public void rbSearch() throws IOException{
-		File file = new File("src/test/resources/dicionario2_input.txt");
+		File file = new File("src/test/resources/rbtree/dicionario2_input.txt");
 		RbTree rbTree = new RbTree();
 		rbTree.process(file.getAbsolutePath());
 		assertNull(rbTree.rbSearch("teste"));
@@ -42,7 +42,7 @@ public class RbTreeTest {
 	
 	@Test(expectedExceptions = UnknownError.class)
 	public void invalidOperation() throws IOException{
-		File file = new File("src/test/resources/invalid_operation_in.txt");
+		File file = new File("src/test/resources/rbtree/invalid_operation_in.txt");
 		RbTree rbTree = new RbTree();
 		rbTree.process(file.getAbsolutePath());
 	}
