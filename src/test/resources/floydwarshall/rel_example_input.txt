@@ -1,0 +1,5 @@
+4
+0 3 8 INF
+INF 0 INF 1
+INF 4 0 INF
+2 INF -5 0

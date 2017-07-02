@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 public class KnapsackFractionarySelector {
 	@Getter
 	@Setter
-	class Item implements Comparable<Item>{
+	@EqualsAndHashCode(callSuper=false, of={"label", "weight", "value"})
+	static class Item implements Comparable<Item>{
 		private String label;
 		private Integer weight;
 		private Float value;

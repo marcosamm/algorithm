@@ -9,7 +9,7 @@ import lombok.Setter;
 public class MinimumSpanningTreePrim extends GraphAdjacencyList<Vertex, Node<Vertex>, Edge<Vertex>>{
 	@Getter
 	@Setter
-	class PrimNode extends Node<Vertex> implements Comparable<PrimNode>{
+	static class PrimNode extends Node<Vertex> implements Comparable<PrimNode>{
 		boolean inQ = false;
 		
 		@Override

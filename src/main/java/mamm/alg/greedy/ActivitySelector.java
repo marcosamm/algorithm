@@ -26,27 +26,27 @@ public class ActivitySelector {
 	}
 	
 	private String recursiveActivitySelector(int k, int n){
+		StringBuilder a = new StringBuilder();
 		int m = k + 1;
 		while (m <= n && s[m] < f[k]){//find the first activity in Sk to finish
 			m = m + 1;
 		}
-		String A = "";
 		if(m <= n){
-			A = "A"+m+" "+recursiveActivitySelector(m, n);
+			a.append("A").append(m).append(" ").append(recursiveActivitySelector(m, n));
 		}
-		return A.trim();
+		return a.toString().trim();
 	}
 	
 	public String iterativeActivitySelector(){
 		int n = s.length;
-		String A = "A1";
+		StringBuilder a = new StringBuilder("A1");
 		int k = 1;
 		for(int m = 2; m < n; m++){
 			if(s[m] >= f[k]){
-				A = A + " A"+m;
+				a.append(" A").append(m);
 				k = m;
 			}
 		}
-		return A;
+		return a.toString();
 	}
 }

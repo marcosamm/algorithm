@@ -59,7 +59,7 @@ public class FloydWarshallAppTest {
 	
 	@Test(expectedExceptions = IOException.class)
 	public void invalidNumberOfWeightsOneLineVertices() throws IOException{
-		File file = new File("src/test/resources/floydwarshall/invalid_number_of_weights_one_line_in.txt");
+		File file = new File("src/test/resources/floydwarshall/invalid_numbers_of_weights_one_line_in.txt");
 		FloydWarshallApp fwApp = new FloydWarshallApp();
 		fwApp.process(file.getAbsolutePath());
 	}
@@ -74,6 +74,13 @@ public class FloydWarshallAppTest {
 	@Test(expectedExceptions = IOException.class)
 	public void invalidNumberOfColumns() throws IOException{
 		File file = new File("src/test/resources/floydwarshall/invalid_number_of_columns_in.txt");
+		FloydWarshallApp fwApp = new FloydWarshallApp();
+		fwApp.process(file.getAbsolutePath());
+	}
+	
+	@Test(expectedExceptions = IOException.class)
+	public void invalidWhileLineColumn() throws IOException{
+		File file = new File("src/test/resources/floydwarshall/invalid_while_line_column_in.txt");
 		FloydWarshallApp fwApp = new FloydWarshallApp();
 		fwApp.process(file.getAbsolutePath());
 	}

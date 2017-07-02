@@ -50,27 +50,25 @@ public class FloydWarshallApp {
 				if(lines.size() == n){
 					for (int i=0; i < n ; i++) {
 						String line = lines.get(i);
-						if(!line.isEmpty()){
-							String [] weights = line.split(" ");
-							if(weights.length == n){
-								for(int j=0; j < n; j++){
-									String weight = weights[j];
-									if(weight.equals("INF")){
-										w[i][j] = INF;
-									}else{
-										w[i][j] = Integer.parseInt(weight);
-									}
+						String [] weights = line.split(" ");
+						if(weights.length == n){
+							for(int j=0; j < n; j++){
+								String weight = weights[j];
+								if(weight.equals("INF")){
+									w[i][j] = INF;
+								}else{
+									w[i][j] = Integer.parseInt(weight);
 								}
-							}else{
-								throw new IOException("Number of columns incompatible with number of vertices reported on the first line");
 							}
+						}else{
+							throw new IOException("Number of columns incompatible with number of vertices reported on the first line");
 						}
 					}
 				}else{
 					throw new IOException("Number of rows incompatible with number of vertices reported on the first line");
 				}
 			}
-		}catch(Exception e){
+		}catch(NumberFormatException | NegativeArraySizeException e){
 			throw new IOException("The first line must be a positive integer");
 		}
 		floydWarshall = new FloydWarshall(w);

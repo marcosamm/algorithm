@@ -9,7 +9,7 @@ import lombok.Setter;
 public class Knapsack01Selector {
 	@Getter
 	@Setter
-	class Item implements Comparable<Item>{
+	static class Item {
 		private String label;
 		private Integer weight;
 		private Float value;
@@ -18,15 +18,6 @@ public class Knapsack01Selector {
 			this.label = label;
 			this.weight = weight;
 			this.value = value;
-		}
-		
-		public Float getCostByWeight(){
-			return value/weight;
-		}
-
-		@Override
-		public int compareTo(Item o2) {
-			return getCostByWeight().compareTo(o2.getCostByWeight());
 		}
 	}
 	
