@@ -30,10 +30,32 @@ public class FloydWarshallAppTest {
 	
 	@Test
 	public void shortestPath() throws IOException{
-		File file = new File("src/test/resources/floydwarshall/cormem_example_input.txt");
+		File file = new File("src/test/resources/floydwarshall/cormen_example_input.txt");
 		FloydWarshallApp fwApp = new FloydWarshallApp();
 		fwApp.process(file.getAbsolutePath());
 		assertEquals(fwApp.getShortestPath(0, 3), "0 4 3");
+	}
+	
+	@Test
+	public void prints() throws IOException{
+		File file = new File("src/test/resources/floydwarshall/cormen_example_input.txt");
+		FloydWarshallApp fwApp = new FloydWarshallApp();
+		fwApp.process(file.getAbsolutePath());
+		String expectedMatrixD =
+			"0 1 -3 2 -4\n" +
+			"3 0 -4 1 -1\n" +
+			"7 4 0 5 3\n" +
+			"2 -1 -5 0 -2\n" +
+			"8 5 1 6 0\n";
+		assertEquals(fwApp.getMatrixD(), expectedMatrixD);
+		String expectedMatrixP =
+			"NIL 2 3 4 0\n" +
+			"3 NIL 3 1 0\n" +
+			"3 2 NIL 1 0\n" +
+			"3 2 3 NIL 0\n" +
+			"3 2 3 4 NIL\n";
+		assertEquals(fwApp.getMatrixP(), expectedMatrixP);
+		assertEquals(fwApp.getQtdVertices(), 5);
 	}
 	
 	@Test(expectedExceptions = IOException.class)
@@ -83,5 +105,45 @@ public class FloydWarshallAppTest {
 		File file = new File("src/test/resources/floydwarshall/invalid_while_line_column_in.txt");
 		FloydWarshallApp fwApp = new FloydWarshallApp();
 		fwApp.process(file.getAbsolutePath());
+	}
+	
+	@Test
+	public void negativeCycle() throws IOException{
+		File file = new File("src/test/resources/floydwarshall/negative_cycle_input.txt");
+		FloydWarshallApp fwApp = new FloydWarshallApp();
+		fwApp.process(file.getAbsolutePath());
+		assertEquals(fwApp.getShortestPath(0, 3), "Negative cycle detected");
+	}
+	
+	@Test(expectedExceptions=IllegalArgumentException.class)
+	public void negativeParameterI() throws IOException{
+		File file = new File("src/test/resources/floydwarshall/negative_cycle_input.txt");
+		FloydWarshallApp fwApp = new FloydWarshallApp();
+		fwApp.process(file.getAbsolutePath());
+		assertEquals(fwApp.getShortestPath(-1, 3), "");
+	}
+	
+	@Test(expectedExceptions=IllegalArgumentException.class)
+	public void negativeParameterJ() throws IOException{
+		File file = new File("src/test/resources/floydwarshall/negative_cycle_input.txt");
+		FloydWarshallApp fwApp = new FloydWarshallApp();
+		fwApp.process(file.getAbsolutePath());
+		assertEquals(fwApp.getShortestPath(1, -3), "");
+	}
+	
+	@Test(expectedExceptions=IllegalArgumentException.class)
+	public void overParameterI() throws IOException{
+		File file = new File("src/test/resources/floydwarshall/negative_cycle_input.txt");
+		FloydWarshallApp fwApp = new FloydWarshallApp();
+		fwApp.process(file.getAbsolutePath());
+		assertEquals(fwApp.getShortestPath(10, 3), "");
+	}
+	
+	@Test(expectedExceptions=IllegalArgumentException.class)
+	public void overParameterJ() throws IOException{
+		File file = new File("src/test/resources/floydwarshall/negative_cycle_input.txt");
+		FloydWarshallApp fwApp = new FloydWarshallApp();
+		fwApp.process(file.getAbsolutePath());
+		assertEquals(fwApp.getShortestPath(0, 10), "");
 	}
 }

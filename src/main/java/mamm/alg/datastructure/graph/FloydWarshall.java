@@ -49,6 +49,9 @@ public class FloydWarshall {
 	}
 	
 	public String printAllPairShortestPath(int i, int j){
+		if(i < 0 || i > getQtdVertices()-1 || j < 0 || j > getQtdVertices()-1){
+			throw new IllegalArgumentException("I and j must be between 0 and "+(getQtdVertices()-1));
+		}
 		StringBuilder sb = new StringBuilder();
 		if(!hasNegativeCycle){
 			if(i == j){
@@ -114,5 +117,9 @@ public class FloydWarshall {
 			sb.append("Negative cycle detected\n");
 		}
 		return sb.toString();
+	}
+	
+	public int getQtdVertices(){
+		return d.length;
 	}
 }

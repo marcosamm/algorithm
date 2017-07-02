@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.marcosamm</groupId>
 	<artifactId>algorithm</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	
 	<properties>
 		<maven.compiler.source>1.7</maven.compiler.source>
@@ -51,6 +51,7 @@
 						<instrumentation>
 							<ignoreTrivial>true</ignoreTrivial>
 							<excludes>
+								<ignore>mamm/alg/app/FloydWarshallMain.class</ignore>
 								<ignore>mamm/alg/app/RbTreeMain.class</ignore>
 							</excludes>
 						</instrumentation>
@@ -96,7 +97,8 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>mamm.alg.app.RbTreeMain</mainClass>
+							<!-- <mainClass>mamm.alg.app.RbTreeMain</mainClass>-->
+							<mainClass>mamm.alg.app.FloydWarshallMain</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

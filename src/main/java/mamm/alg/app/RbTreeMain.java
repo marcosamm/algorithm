@@ -9,7 +9,7 @@ public class RbTreeMain {
 
 	public static void main(String[] args) throws IOException {
 		if(args.length > 0){
-			RbTree rb = new RbTree();
+			RbTreeApp rb = new RbTreeApp();
 			File inputFile = new File(args[0]);
 			if(inputFile.exists()){
 				rb.process(inputFile.toPath());

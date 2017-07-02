@@ -10,41 +10,37 @@ import mamm.alg.datastructure.BinaryTree.WalkOrder;
 import mamm.alg.datastructure.BinaryTreeNode;
 import mamm.alg.datastructure.RedBlackTree;
 
-public class RbTree {
+public class RbTreeApp {
 	RedBlackTree<String, String> rbTree;
 	
-	public RbTree() {
+	public RbTreeApp() {
 		rbTree = new RedBlackTree<>();
 	}
 	
 	public void process(Path pathFile) throws IOException {
 		List<String> lines = Files.readAllLines(pathFile);
 		for (String line : lines) {
-			if(!line.isEmpty()){
-				String [] lineSplit = line.split(" "); 
-				String word = lineSplit[0];
-				String operation = lineSplit[1];
-				BinaryTreeNode<String, String> n = rbTree.search(word);
-				if(operation.equals("1")){
-					if(n == null){
-						rbTree.insert(word, null);
-					}else{
-						System.out.println("Word already inserted: " + word);
-					}
-				}else if(operation.equals("0")){
-					if(n != null){
-						System.out.println("Removing word: " + n.getKey().toString());
-						rbTree.delete(n);
-						rbPrint();
-						rbCheck();
-					}else{
-						System.out.println("Word not found or previously removed: " + word);
-					}
+			String [] lineSplit = line.split(" "); 
+			String word = lineSplit[0];
+			String operation = lineSplit[1];
+			BinaryTreeNode<String, String> n = rbTree.search(word);
+			if(operation.equals("1")){
+				if(n == null){
+					rbTree.insert(word, null);
 				}else{
-					throw new UnknownError("Unknown operation");
+					System.out.println("Word already inserted: " + word);
+				}
+			}else if(operation.equals("0")){
+				if(n != null){
+					System.out.println("Removing word: " + n.getKey().toString());
+					rbTree.delete(n);
+					rbPrint();
+					rbCheck();
+				}else{
+					System.out.println("Word not found or previously removed: " + word);
 				}
 			}else{
-				break;
+				throw new UnknownError("Unknown operation");
 			}
 		}
 	}

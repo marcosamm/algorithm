@@ -10,7 +10,7 @@ import java.io.IOException;
 import org.testng.annotations.Test;
 import org.testng.reporters.Files;
 
-public class RbTreeTest {
+public class RbTreeAppTest {
 	
 	@Test
 	public void directory() throws IOException{
@@ -22,7 +22,7 @@ public class RbTreeTest {
 		};
 		File folder = new File("src/test/resources/rbtree/");
 		for(File file : folder.listFiles(ff)){
-			RbTree rbTree = new RbTree();
+			RbTreeApp rbTree = new RbTreeApp();
 			rbTree.process(file.getAbsolutePath());
 			String expected = Files.readFile(new File(file.getAbsolutePath().replace("input", "output")));
 			assertEquals(rbTree.getStringCheck(), expected); 
@@ -32,7 +32,7 @@ public class RbTreeTest {
 	@Test
 	public void rbSearch() throws IOException{
 		File file = new File("src/test/resources/rbtree/dicionario2_input.txt");
-		RbTree rbTree = new RbTree();
+		RbTreeApp rbTree = new RbTreeApp();
 		rbTree.process(file.getAbsolutePath());
 		assertNull(rbTree.rbSearch("teste"));
 		assertEquals(rbTree.rbSearch("abuso").getKey(), "abuso");
@@ -43,7 +43,7 @@ public class RbTreeTest {
 	@Test(expectedExceptions = UnknownError.class)
 	public void invalidOperation() throws IOException{
 		File file = new File("src/test/resources/rbtree/invalid_operation_in.txt");
-		RbTree rbTree = new RbTree();
+		RbTreeApp rbTree = new RbTreeApp();
 		rbTree.process(file.getAbsolutePath());
 	}
 }

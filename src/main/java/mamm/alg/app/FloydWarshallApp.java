@@ -23,7 +23,7 @@ public class FloydWarshallApp {
 			w = new Integer[n][n];
 			
 			lines.remove(lines.get(0));
-			if(lines.size() == 1 || lines.size() == 2){
+			if(lines.size() == 1){
 				//All weights in one line
 				String [] weights = lines.get(0).split(" ");
 				if(weights.length == n*n){
@@ -93,5 +93,9 @@ public class FloydWarshallApp {
 	
 	public void process(String fileName) throws IOException{
 		process(new File(fileName).toPath());
+	}
+	
+	public int getQtdVertices(){
+		return floydWarshall.getQtdVertices();
 	}
 }
