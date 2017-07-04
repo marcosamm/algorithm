@@ -1,0 +1,14 @@
+D:
+0 3 5 3
+INF -1 1 -1
+INF -4 -2 -4
+INF 2 4 0
+
+P:
+NIL 2 1 1
+NIL 2 1 1
+NIL 2 1 1
+NIL 2 1 NIL
+
+SHORTEST PATHS:
+Negative cycle detected
