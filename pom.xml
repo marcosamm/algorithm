@@ -23,6 +23,14 @@
     	<maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
     	<maven-site-plugin.version>3.6</maven-site-plugin.version>
     	<maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
+    	<evosuite.version>1.0.5</evosuite.version>
+    	
+    	<cutsFile>evosuitecutsfile.txt</cutsFile>
+    	<targetFolder>src/test/evosuite</targetFolder>
+    	<extraArgs> -Duse_separate_classloader=false </extraArgs>
+    	
+    	<build-helper-maven-plugin.version>1.8</build-helper-maven-plugin.version>
+    	<junit.version>4.12</junit.version>
 	</properties>
 	<url>https://github.com/marcosamm/algorithm</url>
 	<build>
@@ -109,13 +117,102 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven-surefire-plugin.version}</version>
 				<configuration>
-					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml</suiteXmlFile>
-					</suiteXmlFiles>
+					<skip>true</skip>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.evosuite.plugins</groupId>
+				<artifactId>evosuite-maven-plugin</artifactId>
+				<version>${evosuite.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>${build-helper-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>add-test-source</id>
+						<phase>generate-test-sources</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${targetFolder}</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<!-- ********** Profiles for run test cases ************ -->
+		<!-- Profile for run JUnit test dependent tests -->
+		<profile>
+			<id>junit-tests</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven-surefire-plugin.version}</version>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.maven.surefire</groupId>
+								<artifactId>surefire-junit47</artifactId>
+								<version>${maven-surefire-plugin.version}</version>
+							</dependency>
+						</dependencies>
+						<configuration>
+							<threadCount>10</threadCount>
+							<skip>false</skip>
+							<properties>
+								<property>
+									<name>listener</name>
+									<value>org.evosuite.runtime.InitializingListener</value>
+								</property>
+							</properties>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	
+		<!-- Profile for run TestNG dependent tests -->
+		<profile>
+			<id>testng-tests</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven-surefire-plugin.version}</version>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.maven.surefire</groupId>
+								<artifactId>surefire-testng</artifactId>
+								<version>${maven-surefire-plugin.version}</version>
+							</dependency>
+						</dependencies>
+						<configuration>
+							<properties>
+								<property>
+									<name>junit</name>
+									<value>false</value>
+								</property>
+							</properties>
+							<skip>false</skip>
+							<suiteXmlFiles>
+								<suiteXmlFile>testng.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<!-- ***************************************************** -->
+	</profiles>
 	<reporting>
 		<plugins>
 			<plugin>
@@ -157,5 +254,24 @@
 			<version>${testng.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.evosuite</groupId>
+			<artifactId>evosuite-standalone-runtime</artifactId>
+			<version>${evosuite.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>EvoSuite</id>
+			<name>EvoSuite Repository</name>
+			<url>http://www.evosuite.org/m2</url>
+		</pluginRepository>
+	</pluginRepositories>
 </project>
